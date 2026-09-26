@@ -7,9 +7,6 @@ interface RecaptchaWidgetProps {
   className?: string;
 }
 
-// Google official public test key (always passes verification for development/preview)
-const DEFAULT_TEST_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
-
 export const RecaptchaWidget: React.FC<RecaptchaWidgetProps> = ({
   onVerify,
   onExpire,
@@ -21,7 +18,11 @@ export const RecaptchaWidget: React.FC<RecaptchaWidgetProps> = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadError, setLoadError] = useState(false);
 
-  const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY || DEFAULT_TEST_SITE_KEY;
+  const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+
+  if (!siteKey) {
+    return null;
+  }
 
   // Load the Google reCAPTCHA explicit script once
   useEffect(() => {

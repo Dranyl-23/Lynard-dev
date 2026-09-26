@@ -13,8 +13,6 @@ export interface InquiryResult {
   message: string;
 }
 
-// User's verified Web3Forms public access key
-const DEFAULT_WEB3FORMS_KEY = '5f116ef5-7f3a-47b0-b67e-d3991bf54ac8';
 
 // Sanitize user input to prevent XSS and strip unwanted HTML/script injections
 function sanitizeInput(text: string, maxLength: number): string {
@@ -66,7 +64,7 @@ export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResul
     };
   }
 
-  const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || DEFAULT_WEB3FORMS_KEY;
+  const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
   if (web3FormsKey) {
     try {

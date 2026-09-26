@@ -58,8 +58,9 @@ export const Contact: React.FC = () => {
       return;
     }
 
-    // 3. Google reCAPTCHA Verification Check
-    if (!recaptchaToken) {
+    // 3. Google reCAPTCHA Verification Check (enforced when VITE_RECAPTCHA_SITE_KEY is configured)
+    const isRecaptchaEnabled = Boolean(import.meta.env.VITE_RECAPTCHA_SITE_KEY);
+    if (isRecaptchaEnabled && !recaptchaToken) {
       setStatus('error');
       setResultMessage('Please check the "I\'m not a robot" reCAPTCHA box to verify you are human.');
       return;
