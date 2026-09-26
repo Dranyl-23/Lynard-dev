@@ -20,6 +20,8 @@ export const profile: Profile = {
   email: 'alfielynard23@gmail.com',
   phone: '+63945553379',
   github: 'https://github.com/Dranyl-23',
+  linkedin: 'https://www.linkedin.com/in/alfie-lynard-polacas',
+  resume: '/Alfie-Lynard-Resume.pdf',
   location: 'Davao Region, Philippines'
 };
 

@@ -138,23 +138,33 @@ export const Hero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.1, delay: 1.35, ease: EXPO_OUT }}
               style={{ opacity: introOpacity }}
-              className="w-full text-center lg:w-[16rem] lg:shrink-0 lg:text-left"
+              className="w-full text-center lg:w-auto lg:max-w-sm lg:shrink-0 lg:text-left"
             >
               <h2 className="font-display text-[1.15rem] leading-snug font-bold text-ink sm:text-[1.7rem] lg:text-[1.45rem] lg:leading-tight">
                 {profile.role}
               </h2>
-              <p className="mx-auto mt-1.5 max-w-sm text-xs leading-relaxed text-muted sm:mt-2 sm:text-sm lg:mx-0 lg:max-w-none">
+              <p className="mx-auto mt-1.5 max-w-sm text-xs leading-relaxed text-muted sm:mt-2 sm:text-sm lg:mx-0">
                 I build websites and mobile apps that are simple, reliable, and easy to use.
               </p>
-              <div className="mt-3.5 flex flex-wrap items-center justify-center gap-3 sm:mt-5 lg:justify-start">
+              <div className="mt-3.5 flex items-center justify-center gap-2.5 sm:gap-3 sm:mt-5 lg:justify-start">
                 <button
                   type="button"
                   onClick={() => scrollTo('#work')}
-                  className="group flex shrink-0 items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-xs font-semibold text-white whitespace-nowrap transition-transform duration-500 hover:scale-[1.03] dark:bg-white dark:text-neutral-950 sm:px-6 sm:py-3 sm:text-sm cursor-pointer"
+                  className="group flex shrink-0 items-center gap-2 rounded-full bg-ink px-4.5 py-2.5 text-xs font-semibold text-white whitespace-nowrap transition-transform duration-500 hover:scale-[1.03] dark:bg-white dark:text-neutral-950 sm:px-5 sm:py-3 sm:text-sm cursor-pointer"
                 >
                   <span className="whitespace-nowrap">View Projects</span>
                   <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
+
+                <a
+                  href={profile.resume || '/Alfie-Lynard-Resume.pdf'}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="pill-shadow group flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-white/90 px-4 py-2.5 text-xs font-semibold text-ink whitespace-nowrap transition-all duration-500 hover:scale-[1.03] hover:border-ink/40 hover:bg-white dark:border-white/15 dark:bg-neutral-900/80 dark:text-white dark:hover:border-white/40 dark:hover:bg-neutral-900 sm:px-5 sm:py-3 sm:text-sm cursor-pointer"
+                >
+                  <span className="whitespace-nowrap">Resume</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 text-muted transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink dark:group-hover:text-white" />
+                </a>
               </div>
             </motion.div>
 

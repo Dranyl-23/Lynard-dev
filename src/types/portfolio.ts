@@ -82,5 +82,7 @@ export interface Profile {
   email: string;
   phone: string;
   github: string;
+  linkedin?: string;
+  resume?: string;
   location: string;
 }
