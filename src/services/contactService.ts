@@ -83,8 +83,7 @@ export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResul
           project_type: cleanType,
           message: cleanMessage,
           from_name: 'Alfie Lynard Portfolio',
-          botcheck: payload.botcheck || undefined,
-          'g-recaptcha-response': payload.recaptchaToken || undefined
+          botcheck: payload.botcheck || undefined
         })
       });
 
