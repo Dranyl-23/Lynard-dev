@@ -14,92 +14,85 @@ export const RecaptchaWidget: React.FC<RecaptchaWidgetProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<number | null>(null);
+  const isRenderedRef = useRef(false);
+  const onVerifyRef = useRef(onVerify);
+  onVerifyRef.current = onVerify;
+  const onExpireRef = useRef(onExpire);
+  onExpireRef.current = onExpire;
+
   const { resolvedMode } = useTheme();
-  const [isLoaded, setIsLoaded] = useState(false);
   const [loadError, setLoadError] = useState(false);
 
   const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
-  if (!siteKey) {
-    return null;
-  }
-
-  // Load the Google reCAPTCHA explicit script once
   useEffect(() => {
-    if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
-      setIsLoaded(true);
-      return;
-    }
+    if (!siteKey || !containerRef.current || isRenderedRef.current) return;
 
-    const existingScript = document.getElementById('google-recaptcha-script');
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.id = 'google-recaptcha-script';
-      script.src = 'https://www.google.com/recaptcha/api.js?render=explicit';
-      script.async = true;
-      script.defer = true;
-      script.onload = () => {
-        if (window.grecaptcha) {
-          window.grecaptcha.ready(() => {
-            setIsLoaded(true);
-          });
+    let isMounted = true;
+
+    const renderWidget = () => {
+      if (!isMounted || isRenderedRef.current || !containerRef.current) return;
+      if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
+        try {
+          // Clear only on initial render before rendering
+          if (!isRenderedRef.current) {
+            containerRef.current.innerHTML = '';
+            const id = window.grecaptcha.render(containerRef.current, {
+              sitekey: siteKey,
+              theme: resolvedMode === 'dark' ? 'dark' : 'light',
+              size: 'normal',
+              callback: (token: string) => {
+                onVerifyRef.current(token);
+              },
+              'expired-callback': () => {
+                if (onExpireRef.current) onExpireRef.current();
+              },
+              'error-callback': () => {
+                console.warn('Google reCAPTCHA verification error.');
+              }
+            });
+            widgetIdRef.current = id;
+            isRenderedRef.current = true;
+          }
+        } catch (err) {
+          console.warn('Error rendering Google reCAPTCHA widget:', err);
         }
-      };
-      script.onerror = () => {
-        console.warn('Google reCAPTCHA script failed to load (possibly blocked by an ad-blocker).');
-        setLoadError(true);
-      };
-      document.body.appendChild(script);
+      }
+    };
+
+    // If grecaptcha is already available and ready
+    if (window.grecaptcha && typeof window.grecaptcha.ready === 'function') {
+      window.grecaptcha.ready(renderWidget);
     } else {
-      const checkInterval = setInterval(() => {
+      // Poll until grecaptcha script is ready
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
         if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
-          setIsLoaded(true);
-          clearInterval(checkInterval);
+          clearInterval(interval);
+          renderWidget();
+        } else if (attempts > 60) {
+          // If not loaded after 6 seconds, likely blocked by client ad-blocker
+          clearInterval(interval);
+          if (!isRenderedRef.current && isMounted) {
+            setLoadError(true);
+          }
         }
-      }, 150);
+      }, 100);
 
-      return () => clearInterval(checkInterval);
-    }
-  }, []);
-
-  // Render or re-render widget when script is loaded or theme changes
-  useEffect(() => {
-    if (!isLoaded || !containerRef.current || !window.grecaptcha) return;
-
-    // Clear previous rendered widget elements if re-rendering on theme change
-    containerRef.current.innerHTML = '';
-
-    try {
-      const id = window.grecaptcha.render(containerRef.current, {
-        sitekey: siteKey,
-        theme: resolvedMode === 'dark' ? 'dark' : 'light',
-        size: 'normal',
-        callback: (token: string) => {
-          onVerify(token);
-        },
-        'expired-callback': () => {
-          if (onExpire) onExpire();
-        },
-        'error-callback': () => {
-          console.warn('Google reCAPTCHA verification error.');
-        }
-      });
-      widgetIdRef.current = id;
-    } catch (err) {
-      console.warn('Error rendering Google reCAPTCHA widget:', err);
+      return () => {
+        isMounted = false;
+        clearInterval(interval);
+      };
     }
 
     return () => {
-      // Container cleaned up on re-render
+      isMounted = false;
     };
-  }, [isLoaded, resolvedMode, siteKey, onVerify, onExpire]);
+  }, [siteKey]); // Strictly dependent only on siteKey
 
-  if (loadError) {
-    return (
-      <div className="rounded-xl border border-line bg-paper/50 p-3 text-[11px] text-muted">
-        🛡️ <span className="font-semibold">Spam Shield Active:</span> ReCAPTCHA script was blocked by client ad-blocker. Honeypot and rate-limiting are guarding this form.
-      </div>
-    );
+  if (!siteKey) {
+    return null;
   }
 
   return (
@@ -109,6 +102,13 @@ export const RecaptchaWidget: React.FC<RecaptchaWidgetProps> = ({
           ref={containerRef}
           className="recaptcha-box origin-top-left transition-transform duration-300 max-w-full min-h-[78px]"
         />
+
+        {loadError && (
+          <div className="rounded-xl border border-line bg-paper/50 p-2 text-[11px] text-muted">
+            🛡️ <span className="font-semibold">Notice:</span> Google reCAPTCHA was blocked by your browser/ad-blocker. Honeypot protection is active.
+          </div>
+        )}
+
         <div className="flex items-center gap-1.5 text-[11px] text-muted">
           <svg className="h-3 w-3 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
