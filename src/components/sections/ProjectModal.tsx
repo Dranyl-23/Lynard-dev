@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Project } from '../../types/portfolio';
 import { profile, projectPalettes } from '../../data/portfolioData';
 import { EXPO_OUT } from '../ui/FadeIn';
-import { ArrowUpRight, Download, X, Lock, CategoryIcon } from '../icons/UIIcons';
+import { ArrowUpRight, Download, X, CategoryIcon } from '../icons/UIIcons';
 
 interface ProjectModalProps {
   project: Project;
@@ -20,7 +20,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   onClose,
   onSelect
 }) => {
-  const isLive = project.status === 'Live';
+  const [imgError, setImgError] = useState(false);
   const hasLink = project.link && project.link !== '#';
   const hasDownload = !!project.download;
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -33,6 +33,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   ].slice(0, 3);
 
   useEffect(() => {
+    setImgError(false);
     scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [project.title]);
 
@@ -90,20 +91,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             </div>
 
             <div className="flex shrink-0 items-center gap-2">
-              <span className="hidden">
-                <span className="pill-shadow inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-[10px] font-semibold text-ink sm:text-[11px]">
-                  {isLive ? (
-                    <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-                      <span className="relative inline-flex h-full w-full rounded-full bg-accent" />
-                    </span>
-                  ) : (
-                    <Lock className="h-3 w-3 text-muted" />
-                  )}
-                  {isLive ? 'Live' : 'Private'}
-                </span>
-              </span>
-
               <button
                 type="button"
                 onClick={onClose}
@@ -118,16 +105,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           {/* Scrollable Body */}
           <div
             ref={scrollRef}
-            className="min-h-0 flex-1 overflow-y-auto overscroll-contain"
+            className="no-scrollbar min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             data-lenis-prevent
           >
             <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)] lg:items-stretch lg:gap-6 lg:px-6 lg:py-5">
               {/* Image Preview */}
               <div className="overflow-hidden bg-[#f3f1ea] lg:rounded-2xl lg:border lg:border-line">
-                {project.image ? (
+                {project.image && !imgError ? (
                   <img
                     src={project.image}
                     alt={project.title}
+                    onError={() => setImgError(true)}
                     className="aspect-[4/3] w-full object-contain object-center sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:max-h-[min(46vh,340px)]"
                   />
                 ) : (
@@ -147,17 +135,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   <span className="pill-shadow inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-[11px] font-semibold text-ink">
                     <CategoryIcon category={project.category} className="h-3 w-3" />
                     {project.category}
-                  </span>
-                  <span className="pill-shadow inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-[11px] font-semibold text-ink">
-                    {isLive ? (
-                      <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-                        <span className="relative inline-flex h-full w-full rounded-full bg-accent" />
-                      </span>
-                    ) : (
-                      <Lock className="h-3 w-3 text-muted" />
-                    )}
-                    {project.status}
                   </span>
                 </div>
 
@@ -250,11 +227,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   Up next
                 </span>
                 <h3 className="font-display display-tight text-lg font-bold uppercase text-ink sm:text-xl">
-                  /MORE WORK
+                  MORE WORK
                 </h3>
               </div>
 
-              <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 md:mx-0 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible md:px-0 md:pb-0">
+              <div className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 md:mx-0 md:grid md:grid-cols-3 md:gap-3 md:overflow-visible md:px-0 md:pb-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                 {nextProjects.map((sibling) => {
                   const sIdx = siblings.findIndex((p) => p.title === sibling.title);
                   const sibPalette = projectPalettes[sIdx % projectPalettes.length];

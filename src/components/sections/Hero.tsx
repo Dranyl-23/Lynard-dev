@@ -150,7 +150,7 @@ export const Hero: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => scrollTo('#work')}
-                  className="group flex shrink-0 items-center gap-2 rounded-full bg-ink px-4.5 py-2.5 text-xs font-semibold text-white whitespace-nowrap transition-transform duration-500 hover:scale-[1.03] dark:bg-white dark:text-neutral-950 sm:px-5 sm:py-3 sm:text-sm cursor-pointer"
+                  className="hero-primary-btn group flex shrink-0 items-center gap-2 rounded-full px-4.5 py-2.5 text-xs font-semibold whitespace-nowrap transition-transform duration-500 hover:scale-[1.03] sm:px-5 sm:py-3 sm:text-sm cursor-pointer"
                 >
                   <span className="whitespace-nowrap">View Projects</span>
                   <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -160,10 +160,10 @@ export const Hero: React.FC = () => {
                   href={profile.resume || '/Alfie-Lynard-Resume.pdf'}
                   target="_blank"
                   rel="noreferrer"
-                  className="pill-shadow group flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-white/90 px-4 py-2.5 text-xs font-semibold text-ink whitespace-nowrap transition-all duration-500 hover:scale-[1.03] hover:border-ink/40 hover:bg-white dark:border-white/15 dark:bg-neutral-900/80 dark:text-white dark:hover:border-white/40 dark:hover:bg-neutral-900 sm:px-5 sm:py-3 sm:text-sm cursor-pointer"
+                  className="hero-resume-btn pill-shadow group flex shrink-0 items-center gap-1.5 rounded-full border px-4 py-2.5 text-xs font-semibold whitespace-nowrap transition-all duration-500 hover:scale-[1.03] sm:px-5 sm:py-3 sm:text-sm cursor-pointer"
                 >
                   <span className="whitespace-nowrap">Resume</span>
-                  <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 text-muted transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink dark:group-hover:text-white" />
+                  <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               </div>
             </motion.div>

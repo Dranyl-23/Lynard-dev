@@ -30,7 +30,7 @@ export const TechStack: React.FC = () => {
             >
               <TechIcon icon={item.icon} className="h-5 w-5 shrink-0" />
               <span>{item.name}</span>
-              <span className="ml-6 text-line">/</span>
+              <span className="ml-6 text-line">•</span>
             </span>
           ))}
         </MarqueeRibbon>

@@ -154,7 +154,7 @@ export const projects: Project[] = [
       'AI-Powered Smart Schedule & Timetable Assistant built with Flutter & Dart. Uses On-Device Neural Vision (Google ML Kit) and Gemini AI to turn timetable screenshots into smart, reminder-ready schedules.',
     stack: ['Flutter', 'Dart', 'Gemini AI', 'Firebase'],
     link: 'https://github.com/Dranyl-23/Reminda',
-    image: '/projects/reminda.png',
+    image: '/mockups/Reminda.png',
     logo: '/projects/reminda.png'
   },
   {
@@ -186,7 +186,9 @@ export const projects: Project[] = [
     description:
       'Personal developer portfolio built with modern typography, reactive presence indicators, and interactive terminal chat.',
     stack: ['Tailwind', 'TypeScript', 'Vercel'],
-    link: 'https://lynard.vercel.app'
+    link: 'https://lynard.vercel.app',
+    image: '/mockups/Lynard-Portfolio.png',
+    logo: '/favicon.svg',
   },
   {
     title: 'ai-assistant-workflows',
