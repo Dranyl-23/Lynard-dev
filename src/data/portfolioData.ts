@@ -143,7 +143,7 @@ export const projects: Project[] = [
       'Global lifestyle concierge and private club platform for international clients. Discover safe zones, premium venues, and luxury experiences with secure multi-tenant data architecture.',
     stack: ['Laravel', 'TypeScript', 'PostgreSQL', 'DevOps'],
     link: 'https://navysharks.com',
-    image: '/projects/navysharks.png',
+    image: '/mockups/NavySharks.png',
     logo: '/projects/navysharks.png'
   },
   {
@@ -165,7 +165,7 @@ export const projects: Project[] = [
       'A Blockchain-Based Budget Management System for Transparent Organizational Fund Monitoring. Architected using Polygon Amoy smart contracts and Express.js to ensure financial transparency across departments.',
     stack: ['Polygon', 'Express.js', 'TypeScript', 'React'],
     link: 'https://chainbudget.vercel.app',
-    image: '/projects/chainbudget.png',
+    image: '/mockups/Chainbudget.png',
     logo: '/projects/chainbudget.png'
   },
   {
@@ -176,7 +176,7 @@ export const projects: Project[] = [
       'A modern civic issue reporting platform. Empowers citizens to report, track, and resolve community problems in real-time across local government units.',
     stack: ['React', 'TypeScript', 'Tailwind', 'Node.js'],
     link: 'https://Report-Davao.vercel.app',
-    image: '/projects/report-davao.png',
+    image: '/mockups/Report-Davao.png',
     logo: '/projects/report-davao.png'
   },
   {
