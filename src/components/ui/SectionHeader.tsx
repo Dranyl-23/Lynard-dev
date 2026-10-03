@@ -5,7 +5,7 @@ import { RevealText } from './RevealText';
 import { useLenisScroll } from '../LenisProvider';
 
 interface SectionHeaderProps {
-  ghost: string;
+  ghost?: string;
   label: string;
   kicker?: string;
   sub?: string;
@@ -42,15 +42,17 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       }`}
     >
       {/* Ghost Watermark */}
-      <motion.span
-        style={{ x: ghostX }}
-        aria-hidden="true"
-        className={`font-display display-tight pointer-events-none absolute -top-[0.42em] left-0 w-full whitespace-nowrap text-[clamp(2.4rem,11vw,11rem)] font-extrabold uppercase ${
-          dark ? 'ghost-word-dark' : 'ghost-word'
-        } ${isCenter ? 'text-center' : ''}`}
-      >
-        {ghost}
-      </motion.span>
+      {ghost && (
+        <motion.span
+          style={{ x: ghostX }}
+          aria-hidden="true"
+          className={`font-display display-tight pointer-events-none absolute -top-[0.42em] left-0 w-full whitespace-nowrap text-[clamp(2.4rem,11vw,11rem)] font-extrabold uppercase ${
+            dark ? 'ghost-word-dark' : 'ghost-word'
+          } ${isCenter ? 'text-center' : ''}`}
+        >
+          {ghost}
+        </motion.span>
+      )}
 
       {/* Foreground Header Content */}
       <div className="relative pt-[0.5em]">

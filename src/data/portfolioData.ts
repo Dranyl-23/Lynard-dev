@@ -132,8 +132,8 @@ export const projects: Project[] = [
       'A blockchain-based disbursement system for the Philippine 4Ps program. Powered by Stellar and Soroban smart contracts to enforce financial transparency using programmable money.',
     stack: ['TypeScript', 'Stellar', 'Soroban', 'Rust', 'Next.js'],
     link: 'https://4ps-nexus.vercel.app',
-    image: '/projects/4ps-nexus.jpg',
-    logo: '/projects/4ps-nexus.jpg'
+    image: '/projects/4ps-nexus.webp',
+    logo: '/projects/4ps-nexus.webp'
   },
   {
     title: 'Navy Sharks',
@@ -143,8 +143,8 @@ export const projects: Project[] = [
       'Global lifestyle concierge and private club platform for international clients. Discover safe zones, premium venues, and luxury experiences with secure multi-tenant data architecture.',
     stack: ['Laravel', 'TypeScript', 'PostgreSQL', 'DevOps'],
     link: 'https://navysharks.com',
-    image: '/mockups/NavySharks.png',
-    logo: '/projects/navysharks.png'
+    image: '/mockups/NavySharks.webp',
+    logo: '/projects/navysharks.webp'
   },
   {
     title: 'Reminda (Schedly)',
@@ -154,8 +154,8 @@ export const projects: Project[] = [
       'AI-Powered Smart Schedule & Timetable Assistant built with Flutter & Dart. Uses On-Device Neural Vision (Google ML Kit) and Gemini AI to turn timetable screenshots into smart, reminder-ready schedules.',
     stack: ['Flutter', 'Dart', 'Gemini AI', 'Firebase'],
     link: 'https://github.com/Dranyl-23/Reminda',
-    image: '/mockups/Reminda.png',
-    logo: '/projects/reminda.png'
+    image: '/mockups/Reminda.webp',
+    logo: '/projects/reminda.webp'
   },
   {
     title: 'Chainbudget',
@@ -165,8 +165,8 @@ export const projects: Project[] = [
       'A Blockchain-Based Budget Management System for Transparent Organizational Fund Monitoring. Architected using Polygon Amoy smart contracts and Express.js to ensure financial transparency across departments.',
     stack: ['Polygon', 'Express.js', 'TypeScript', 'React'],
     link: 'https://chainbudget.vercel.app',
-    image: '/mockups/Chainbudget.png',
-    logo: '/projects/chainbudget.png'
+    image: '/mockups/Chainbudget.webp',
+    logo: '/projects/chainbudget.webp'
   },
   {
     title: 'Report-Davao',
@@ -176,8 +176,8 @@ export const projects: Project[] = [
       'A modern civic issue reporting platform. Empowers citizens to report, track, and resolve community problems in real-time across local government units.',
     stack: ['React', 'TypeScript', 'Tailwind', 'Node.js'],
     link: 'https://Report-Davao.vercel.app',
-    image: '/mockups/Report-Davao.png',
-    logo: '/projects/report-davao.png'
+    image: '/mockups/Report-Davao.webp',
+    logo: '/projects/report-davao.webp'
   },
   {
     title: 'Lynard Portfolio',
@@ -187,7 +187,7 @@ export const projects: Project[] = [
       'Personal developer portfolio built with modern typography, reactive presence indicators, and interactive terminal chat.',
     stack: ['Tailwind', 'TypeScript', 'Vercel'],
     link: 'https://lynard.vercel.app',
-    image: '/mockups/Lynard-Portfolio.png',
+    image: '/mockups/Lynard-Portfolio.webp',
     logo: '/favicon.svg',
   },
   {
@@ -240,7 +240,7 @@ export const experiences: Experience[] = [
   },
   {
     index: '02',
-    years: '2025 to Present',
+    years: '2025',
     role: 'Full Stack Developer',
     company: 'Independent Software Developer (Freelance)',
     bullets: [
@@ -251,7 +251,7 @@ export const experiences: Experience[] = [
   },
   {
     index: '03',
-    years: '2024 to Present',
+    years: '2024',
     role: 'Freelance UI/UX Designer',
     company: 'Independent Software Developer',
     bullets: [
@@ -262,7 +262,7 @@ export const experiences: Experience[] = [
   },
   {
     index: '04',
-    years: '2024 to Present',
+    years: '2024',
     role: 'Open Source Contributor & Builder',
     company: 'Tech Community & Open Source',
     bullets: [
@@ -284,7 +284,7 @@ export const achievements: Achievement[] = [
   {
     title: 'Capstone Full Stack Developer',
     org: 'Cor Jesu College',
-    year: '2025 to Present',
+    year: '2025',
     detail:
       'Lead full-stack developer on flagship capstone project addressing governmental financial transparency through blockchain technology.'
   },
@@ -323,37 +323,37 @@ export const certificatesData: CertificatesData = {
   it: [
     {
       name: 'Rust School x H.E.R. DAO',
-      src: '/certs/Rust-School-HER-DAO.png'
+      src: '/certs/Rust-School-HER-DAO.webp'
     },
     {
       name: 'Arbitrum Learner',
-      src: '/certs/Arbitrum-Learner.png'
+      src: '/certs/Arbitrum-Learner.webp'
     },
     {
       name: 'FigmaFusion x Cor Jesu',
-      src: '/certs/FigmaFusion-Cor-Jesu.jpg'
+      src: '/certs/FigmaFusion-Cor-Jesu.webp'
     },
     {
       name: 'OpenxAI x Davao DeFi',
-      src: '/certs/OpenxAI-Davao-DeFi.jpg'
+      src: '/certs/OpenxAI-Davao-DeFi.webp'
     },
     {
       name: 'Base Certificate',
-      src: '/certs/Base-Certificate.jpg'
+      src: '/certs/Base-Certificate.webp'
     },
     {
       name: 'StellarX Hackathon',
-      src: '/certs/StellarX-Hackathon.jpg'
+      src: '/certs/StellarX-Hackathon.webp'
     }
   ],
   nonIt: [
     {
       name: 'StellarX Hackathon Participant',
-      src: '/certs/StellarX-Hackathon.jpg'
+      src: '/certs/StellarX-Hackathon.webp'
     },
     {
       name: 'OpenxAI Workshop',
-      src: '/certs/OpenxAI-Davao-DeFi.jpg'
+      src: '/certs/OpenxAI-Davao-DeFi.webp'
     }
   ]
 };
@@ -362,32 +362,32 @@ export const services: ServiceItem[] = [
   {
     title: 'Full-Stack Web Development',
     description: 'Modern, high-performance web applications built with React, Next.js, and Laravel.',
-    image: '/svc-web-development.png'
+    image: '/svc-web-development.webp'
   },
   {
     title: 'Blockchain & Smart Contracts',
     description: 'Decentralized platforms on Stellar (Soroban) and Polygon with tamper-proof financial transparency.',
-    image: '/svc-custom-systems.png'
+    image: '/svc-custom-systems.webp'
   },
   {
     title: 'Backend & Database Architecture',
     description: 'Scalable multi-tenant schemas and high-throughput REST APIs with PostgreSQL & MySQL.',
-    image: '/svc-database-design.png'
+    image: '/svc-database-design.webp'
   },
   {
     title: 'AI & Automated Workflows',
     description: 'Integration of Gemini AI, on-device neural vision, and custom automated agent workflows.',
-    image: '/svc-api-integration.png'
+    image: '/svc-api-integration.webp'
   },
   {
     title: 'Mobile App Development',
     description: 'Cross-platform iOS and Android applications crafted with Flutter, Dart, and Firebase.',
-    image: '/svc-mobile-development.png'
+    image: '/svc-mobile-development.webp'
   },
   {
     title: 'DevOps & Cloud Deployments',
     description: 'CI/CD automation, Docker containerization, edge network hosting, and server management.',
-    image: '/svc-maintenance-support.png'
+    image: '/svc-maintenance-support.webp'
   }
 ];
 

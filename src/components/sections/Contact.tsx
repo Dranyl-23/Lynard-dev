@@ -134,7 +134,7 @@ export const Contact: React.FC = () => {
     <section id="contact" className="relative">
       <div
         className="relative bg-cover bg-center"
-        style={{ backgroundImage: `url(/clouds.png)` }}
+        style={{ backgroundImage: `url(/clouds.webp)` }}
       >
         <div className="absolute inset-0 bg-white/[0.88]" />
 
@@ -142,7 +142,6 @@ export const Contact: React.FC = () => {
           <SectionHeader
             ghost="NEXT"
             label="NEXT STEP"
-            kicker="What happens next"
             sub="Websites, mobile apps, and custom systems tailored to your needs."
           />
 

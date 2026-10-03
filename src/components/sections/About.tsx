@@ -12,7 +12,6 @@ export const About: React.FC = () => {
         <SectionHeader
           ghost="ABOUT ME"
           label="ABOUT"
-          kicker={about.kicker}
           sub={about.intro}
         />
 
@@ -67,7 +66,7 @@ export const About: React.FC = () => {
             <div className="frame-shadow group relative overflow-hidden rounded-3xl border border-line bg-white p-3 sm:rounded-[2rem] sm:p-4">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-paper sm:aspect-[16/11]">
                 <img
-                  src="/about-workspace.png"
+                  src="/about-workspace.webp"
                   alt="Workspace"
                   className="h-full w-full object-cover object-center grayscale transition-[filter,transform] duration-1000 ease-out-expo group-hover:scale-105 group-hover:grayscale-0"
                 />

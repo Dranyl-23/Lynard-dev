@@ -10,7 +10,6 @@ export const Achievements: React.FC = () => {
         <SectionHeader
           ghost="AWARDS"
           label="ACHIEVEMENTS"
-          kicker="Recognition"
           sub="Awards, certifications, and academic honors."
         />
 

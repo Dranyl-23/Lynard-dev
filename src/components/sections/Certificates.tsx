@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { certificatesData } from '../../data/portfolioData';
 import { CertificateItem } from '../../types/portfolio';
 import { SectionHeader } from '../ui/SectionHeader';
-import { FadeIn, EXPO_OUT } from '../ui/FadeIn';
+import { EXPO_OUT } from '../ui/FadeIn';
 import { useLenisScroll } from '../LenisProvider';
-import { ArrowUpRight, X, ExternalLink } from '../icons/UIIcons';
+import { X, ExternalLink } from '../icons/UIIcons';
 
 interface CertificateCardProps {
   cert: CertificateItem;
@@ -64,26 +64,11 @@ export const Certificates: React.FC = () => {
   return (
     <section id="certificates" className="overflow-hidden py-16 sm:py-24 lg:py-32">
       <div className="section-container">
-        <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-          <SectionHeader
-            ghost="CREDENTIALS"
-            label="CERTIFICATES"
-            kicker="Credentials"
-            sub="Gallery of certifications in IT and non-IT fields."
-          />
-
-          <FadeIn y={16}>
-            <a
-              href={certificatesData.driveLink}
-              target="_blank"
-              rel="noreferrer"
-              className="group flex w-full shrink-0 items-center justify-center gap-2 rounded-full border border-line bg-white px-6 py-3 text-center text-xs font-semibold text-ink transition-all duration-500 hover:bg-ink hover:text-white sm:w-auto sm:text-sm cursor-pointer"
-            >
-              <span>View all credentials on Google Drive</span>
-              <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-          </FadeIn>
-        </div>
+        <SectionHeader
+          ghost="CREDENTIALS"
+          label="CERTIFICATES"
+          sub="Gallery of certifications in IT and non-IT fields."
+        />
       </div>
 
       {/* Row 1: IT Field Horizontal Marquee */}

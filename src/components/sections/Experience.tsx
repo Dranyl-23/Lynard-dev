@@ -23,7 +23,6 @@ export const Experience: React.FC = () => {
           <SectionHeader
             ghost="EXPERIENCE"
             label="EXPERIENCE"
-            kicker="Career"
             sub="Where I've worked and what I've built."
             dark
           />

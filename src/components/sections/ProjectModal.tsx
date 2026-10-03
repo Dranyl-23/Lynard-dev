@@ -24,6 +24,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   const hasLink = project.link && project.link !== '#';
   const hasDownload = !!project.download;
   const scrollRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   // Compute 3 next projects for bottom section
   const currentIdx = siblings.findIndex((p) => p.title === project.title);
@@ -32,14 +33,65 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     ...siblings.slice(0, currentIdx)
   ].slice(0, 3);
 
+  const [canScrollDown, setCanScrollDown] = useState(false);
+
+  const checkScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const isAtBottom = el.scrollHeight - el.scrollTop - el.clientHeight <= 16;
+    setCanScrollDown(!isAtBottom);
+  };
+
   useEffect(() => {
     setImgError(false);
     scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    const timer = setTimeout(checkScroll, 120);
+    return () => clearTimeout(timer);
   }, [project.title]);
 
   useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('resize', checkScroll);
+    return () => {
+      el.removeEventListener('scroll', checkScroll);
+      window.removeEventListener('resize', checkScroll);
+    };
+  }, []);
+
+  // Move focus into the dialog on open, restore it to the trigger on close
+  useEffect(() => {
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    dialogRef.current?.focus();
+    return () => {
+      previouslyFocused?.focus?.();
+    };
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'Tab' || !dialogRef.current) return;
+
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (e.shiftKey && (active === first || active === dialogRef.current)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -47,6 +99,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
   return (
     <motion.div
+      ref={dialogRef}
+      tabIndex={-1}
       role="dialog"
       aria-modal="true"
       aria-labelledby="project-detail-title"
@@ -54,13 +108,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       animate={{ y: 0 }}
       exit={{ y: '100%' }}
       transition={{ duration: 0.9, ease: EXPO_OUT }}
-      className="fixed inset-0 z-[70] flex items-stretch justify-center bg-black/40 backdrop-blur-sm lg:items-center"
+      className="fixed inset-0 z-[70] flex items-stretch justify-center bg-black/40 outline-none backdrop-blur-sm lg:items-center"
       data-lenis-prevent
       onWheel={(e) => e.stopPropagation()}
       onTouchMove={(e) => e.stopPropagation()}
     >
       <div className="flex h-dvh w-full max-h-dvh lg:mx-auto lg:h-auto lg:max-h-[min(88vh,760px)] lg:max-w-7xl lg:px-8">
-        <div className="flex min-h-0 w-full flex-1 flex-col overflow-hidden bg-white lg:max-h-[min(88vh,760px)] lg:flex-none lg:rounded-3xl lg:shadow-[0_30px_80px_-30px_rgba(20,20,20,0.35),0_2px_6px_rgba(20,20,20,0.08)]">
+        <div className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden bg-white lg:max-h-[min(88vh,760px)] lg:flex-none lg:rounded-3xl lg:shadow-[0_30px_80px_-30px_rgba(20,20,20,0.35),0_2px_6px_rgba(20,20,20,0.08)]">
           {/* Header */}
           <header className="flex shrink-0 items-center justify-between gap-3 border-b border-line bg-white/95 px-4 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))] backdrop-blur-md sm:px-5 lg:h-[3.75rem] lg:px-6 lg:py-0 lg:pt-0">
             <div className="flex min-w-0 items-center gap-3">
@@ -273,6 +327,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               </div>
             </section>
           </div>
+
+          {/* Scroll cue: subtle fade at the bottom edge while more content exists */}
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-paper via-paper/70 to-transparent transition-opacity duration-300 z-10 ${
+              canScrollDown ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
         </div>
       </div>
     </motion.div>

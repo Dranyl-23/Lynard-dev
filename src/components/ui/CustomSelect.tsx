@@ -62,7 +62,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
       </button>
 
       {isOpen && (
-        <div className="pill-shadow absolute inset-x-0 top-full z-50 mt-2 max-h-60 overflow-y-auto rounded-2xl border border-line bg-white p-1.5 backdrop-blur-xl">
+        <div className="custom-scrollbar pill-shadow absolute inset-x-0 top-full z-50 mt-2 max-h-60 overflow-y-auto rounded-2xl border border-line bg-white p-1.5 pr-2 backdrop-blur-xl">
           {options.map((opt) => {
             const isSelected = opt === value;
             return (

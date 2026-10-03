@@ -18,7 +18,6 @@ export const Services: React.FC = () => {
         <SectionHeader
           ghost="SERVICES"
           label="SERVICES"
-          kicker="What I offer"
           sub="Everything you need to launch: planning, design, development, and support."
         />
 

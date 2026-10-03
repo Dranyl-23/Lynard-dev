@@ -94,7 +94,7 @@ export const Hero: React.FC = () => {
           >
             {!imageError ? (
               <img
-                src="/Profile.png"
+                src="/Profile.webp"
                 alt={profile.name}
                 onError={() => setImageError(true)}
                 className="hero-portrait h-[32vh] min-[380px]:h-[35vh] w-auto max-h-[340px] sm:max-h-none sm:h-[46vh] lg:h-[70vh] object-contain object-bottom grayscale transition-[filter] duration-1000 ease-out-expo hover:grayscale-0 cursor-pointer"

@@ -1,3 +1,5 @@
+import { profile } from '../data/portfolioData';
+
 export interface InquiryPayload {
   name: string;
   email: string;
@@ -83,7 +85,9 @@ export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResul
           project_type: cleanType,
           message: cleanMessage,
           from_name: 'Alfie Lynard Portfolio',
-          botcheck: payload.botcheck || undefined
+          botcheck: payload.botcheck || undefined,
+          // Web3Forms verifies this server-side when reCAPTCHA is enabled for the access key
+          'g-recaptcha-response': payload.recaptchaToken || undefined
         })
       });
 
@@ -116,11 +120,11 @@ export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResul
     `Hi Alfie,\n\nName: ${cleanName}\nEmail: ${cleanEmail}\nProject Category: ${cleanType}\n\nProject Details:\n${cleanMessage}`
   );
 
-  window.open(`mailto:alfielynard23@gmail.com?subject=${subject}&body=${body}`, '_blank');
+  window.open(`mailto:${profile.email}?subject=${subject}&body=${body}`, '_blank');
 
   return {
     success: true,
     provider: 'mailto',
-    message: 'Opening your email client to send this inquiry directly to alfielynard23@gmail.com...'
+    message: `Opening your email client to send this inquiry directly to ${profile.email}...`
   };
 }

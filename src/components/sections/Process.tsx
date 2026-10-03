@@ -10,7 +10,6 @@ export const Process: React.FC = () => {
         <SectionHeader
           ghost="PROCESS"
           label="PROCESS"
-          kicker="How I work"
           sub="Four simple steps from idea to launch."
         />
 

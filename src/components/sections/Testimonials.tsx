@@ -42,7 +42,6 @@ export const Testimonials: React.FC = () => {
           <SectionHeader
             ghost="FEEDBACK"
             label="TESTIMONIALS"
-            kicker="Kind words"
             sub="What clients say about working with me."
           />
 

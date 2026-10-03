@@ -12,7 +12,6 @@ export const TechStack: React.FC = () => {
         <SectionHeader
           ghost="TECH STACK"
           label="TECH STACK"
-          kicker="Technologies I use"
           sub="The tools I use to build complete websites, apps, and systems, from frontend to hosting."
         />
       </div>

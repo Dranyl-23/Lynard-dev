@@ -25,7 +25,16 @@ const ProjectCard: React.FC<{
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.9, delay: index * 0.08, ease: EXPO_OUT }}
       onClick={onOpen}
-      className="group cursor-pointer rounded-2xl border border-line bg-white p-2.5 transition-shadow duration-500 hover:shadow-[0_32px_64px_-32px_rgba(20,20,20,0.4)]"
+      role="button"
+      tabIndex={0}
+      aria-label={`Open ${project.title} project details`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onOpen();
+        }
+      }}
+      className="group cursor-pointer rounded-2xl border border-line bg-white p-2.5 transition-shadow duration-500 hover:shadow-[0_32px_64px_-32px_rgba(20,20,20,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     >
       {/* Thumbnail */}
       <div
@@ -37,6 +46,8 @@ const ProjectCard: React.FC<{
           <img
             src={project.image}
             alt={project.title}
+            loading="lazy"
+            decoding="async"
             onError={() => setImgError(true)}
             className="h-full w-full object-cover object-center transition-transform duration-1000 ease-out-expo group-hover:scale-105"
           />
@@ -116,7 +127,7 @@ export const Projects: React.FC = () => {
   return (
     <section id="work" className="py-16 sm:py-24 lg:py-32">
       <div className="section-container">
-        <SectionHeader ghost="WORK" label="SELECTED WORK" kicker="Featured" />
+        <SectionHeader ghost="WORK" label="SELECTED WORK" />
 
         <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <p className="max-w-xl text-sm leading-relaxed text-muted sm:text-[15px]">
