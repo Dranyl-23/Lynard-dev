@@ -85,9 +85,7 @@ export async function sendInquiry(payload: InquiryPayload): Promise<InquiryResul
           project_type: cleanType,
           message: cleanMessage,
           from_name: 'Alfie Lynard Portfolio',
-          botcheck: payload.botcheck || undefined,
-          // Web3Forms verifies this server-side when reCAPTCHA is enabled for the access key
-          'g-recaptcha-response': payload.recaptchaToken || undefined
+          botcheck: payload.botcheck || undefined
         })
       });
 
