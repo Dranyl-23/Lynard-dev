@@ -19,11 +19,10 @@ const ProjectCard: React.FC<{
   return (
     <motion.article
       layout
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-8% 0px' }}
-      exit={{ opacity: 0, scale: 0.97 }}
-      transition={{ duration: 0.9, delay: index * 0.08, ease: EXPO_OUT }}
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.18 } }}
+      transition={{ duration: 0.35, delay: index * 0.03, ease: EXPO_OUT }}
       onClick={onOpen}
       role="button"
       tabIndex={0}
@@ -93,7 +92,7 @@ const ProjectCard: React.FC<{
 };
 
 export const Projects: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState<'Live' | 'Private'>('Live');
+  const [selectedTab, setSelectedTab] = useState<'Client' | 'Personal'>('Client');
   const [activeProject, setActiveProject] = useState<{
     project: Project;
     palette: string;
@@ -107,8 +106,8 @@ export const Projects: React.FC = () => {
 
   const counts = useMemo(
     () => ({
-      Live: projects.filter((p) => p.status === 'Live').length,
-      Private: projects.filter((p) => p.status === 'Private').length
+      Client: projects.filter((p) => p.status === 'Client').length,
+      Personal: projects.filter((p) => p.status === 'Personal').length
     }),
     []
   );
@@ -131,16 +130,16 @@ export const Projects: React.FC = () => {
 
         <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <p className="max-w-xl text-sm leading-relaxed text-muted sm:text-[15px]">
-            Live products and private builds across web, mobile, education, and government systems.
+            Selected client builds and personal products across web, mobile, and decentralized systems.
           </p>
 
-          {/* Visibility filter tabs */}
+          {/* Project type filter tabs */}
           <div
             role="tablist"
-            aria-label="Project visibility"
+            aria-label="Project filter"
             className="inline-flex shrink-0 items-center rounded-full border border-line bg-paper p-1"
           >
-            {(['Live', 'Private'] as const).map((tab) => {
+            {(['Client', 'Personal'] as const).map((tab) => {
               const isSelected = selectedTab === tab;
               return (
                 <button
@@ -157,7 +156,7 @@ export const Projects: React.FC = () => {
                     <motion.div
                       layoutId="tab-pill"
                       className="work-tab-bg absolute inset-0 rounded-full"
-                      transition={{ type: 'spring', duration: 0.5, bounce: 0.15 }}
+                      transition={{ type: 'spring', duration: 0.3, bounce: 0.1 }}
                     />
                   )}
                   <span className="relative z-10">

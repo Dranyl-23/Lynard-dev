@@ -214,10 +214,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   </div>
                   <div>
                     <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
-                      Status
+                      Type
                     </dt>
                     <dd className="mt-1 text-sm font-semibold text-ink">
-                      {project.status}
+                      {project.status === 'Client' ? 'Client Work' : 'Personal Project'}
                     </dd>
                   </div>
                   <div className="col-span-2 sm:col-span-1">

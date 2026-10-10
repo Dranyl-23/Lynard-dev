@@ -125,20 +125,9 @@ export const marqueeTech = techStack.flatMap((g) => g.items);
 
 export const projects: Project[] = [
   {
-    title: '4PS-Nexus',
-    category: 'GovTech',
-    status: 'Live',
-    description:
-      'A blockchain-based disbursement system for the Philippine 4Ps program. Powered by Stellar and Soroban smart contracts to enforce financial transparency using programmable money.',
-    stack: ['TypeScript', 'Stellar', 'Soroban', 'Rust', 'Next.js'],
-    link: 'https://4ps-nexus.vercel.app',
-    image: '/projects/4ps-nexus.webp',
-    logo: '/projects/4ps-nexus.webp'
-  },
-  {
     title: 'Navy Sharks',
     category: 'Enterprise',
-    status: 'Live',
+    status: 'Client',
     description:
       'Global lifestyle concierge and private club platform for international clients. Discover safe zones, premium venues, and luxury experiences with secure multi-tenant data architecture.',
     stack: ['Laravel', 'TypeScript', 'PostgreSQL', 'DevOps'],
@@ -147,9 +136,20 @@ export const projects: Project[] = [
     logo: '/projects/navysharks.webp'
   },
   {
+    title: '4PS-Nexus',
+    category: 'GovTech',
+    status: 'Personal',
+    description:
+      'A blockchain-based disbursement system for the Philippine 4Ps program. Powered by Stellar and Soroban smart contracts to enforce financial transparency using programmable money.',
+    stack: ['TypeScript', 'Stellar', 'Soroban', 'Rust', 'Next.js'],
+    link: 'https://4-ps-nexus.vercel.app/',
+    image: '/mockups/4PS Nexus.png',
+    logo: '/projects/4ps-nexus.webp'
+  },
+  {
     title: 'Reminda (Schedly)',
     category: 'AI Mobile App',
-    status: 'Live',
+    status: 'Personal',
     description:
       'AI-Powered Smart Schedule & Timetable Assistant built with Flutter & Dart. Uses On-Device Neural Vision (Google ML Kit) and Gemini AI to turn timetable screenshots into smart, reminder-ready schedules.',
     stack: ['Flutter', 'Dart', 'Gemini AI', 'Firebase'],
@@ -160,7 +160,7 @@ export const projects: Project[] = [
   {
     title: 'Chainbudget',
     category: 'DeFi Platform',
-    status: 'Live',
+    status: 'Personal',
     description:
       'A Blockchain-Based Budget Management System for Transparent Organizational Fund Monitoring. Architected using Polygon Amoy smart contracts and Express.js to ensure financial transparency across departments.',
     stack: ['Polygon', 'Express.js', 'TypeScript', 'React'],
@@ -171,7 +171,7 @@ export const projects: Project[] = [
   {
     title: 'Report-Davao',
     category: 'Civic Tech',
-    status: 'Live',
+    status: 'Personal',
     description:
       'A modern civic issue reporting platform. Empowers citizens to report, track, and resolve community problems in real-time across local government units.',
     stack: ['React', 'TypeScript', 'Tailwind', 'Node.js'],
@@ -182,40 +182,13 @@ export const projects: Project[] = [
   {
     title: 'Lynard Portfolio',
     category: 'Brand Website',
-    status: 'Live',
+    status: 'Personal',
     description:
       'Personal developer portfolio built with modern typography, reactive presence indicators, and interactive terminal chat.',
     stack: ['Tailwind', 'TypeScript', 'Vercel'],
     link: 'https://www.lynard-dev.website',
     image: '/mockups/Lynard-Portfolio.webp',
     logo: '/favicon.svg',
-  },
-  {
-    title: 'ai-assistant-workflows',
-    category: 'Productivity',
-    status: 'Private',
-    description:
-      'Personal AI assistant workflows mapped to daily work routines, leveraging local LLMs and specialized agents to automate freelance business tasks.',
-    stack: ['TypeScript', 'Python', 'AI / LLM'],
-    link: 'https://github.com/Dranyl-23/ai-assistant-workflows'
-  },
-  {
-    title: 'Brgy-app',
-    category: 'Government',
-    status: 'Private',
-    description:
-      'Local government unit (Barangay) management and operations portal for resident records, blotters, and clearance certificates.',
-    stack: ['Laravel', 'React', 'TypeScript', 'MySQL'],
-    link: 'https://github.com/Dranyl-23/Brgy-app'
-  },
-  {
-    title: 'Sleep_Optimizer',
-    category: 'Mobile App',
-    status: 'Private',
-    description:
-      'A mobile application built with Flutter for tracking and optimizing circadian rhythm and user sleep patterns.',
-    stack: ['Flutter', 'Dart', 'Firebase'],
-    link: 'https://github.com/Dranyl-23/Sleep_Optimizer'
   }
 ];
 

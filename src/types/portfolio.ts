@@ -1,7 +1,7 @@
 export interface Project {
   title: string;
   category: string;
-  status: 'Live' | 'Private';
+  status: 'Client' | 'Personal';
   description: string;
   stack: string[];
   link?: string;
