@@ -2,7 +2,7 @@
 
 An editorial, high-performance developer portfolio built with **React**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**, featuring Lenis smooth scrolling, adaptive light/dark mode transitions, interactive project showcases, and a hardened contact system protected by **Google reCAPTCHA** and **Web3Forms**.
 
-🔗 **Live URL:** [https://lynard-dev.vercel.app](https://lynard-dev.vercel.app)  
+🔗 **Live URL:** [https://www.lynard-dev.website](https://www.lynard-dev.website)  
 👤 **Author:** Alfie Lynard ([@Dranyl-23](https://github.com/Dranyl-23))
 
 ---

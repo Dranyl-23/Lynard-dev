@@ -1,4 +1,4 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 
-Sitemap: https://lynard-dev.vercel.app/sitemap.xml
+Sitemap: https://www.lynard-dev.website/sitemap.xml
