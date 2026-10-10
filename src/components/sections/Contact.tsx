@@ -6,7 +6,6 @@ import { FadeIn, EXPO_OUT } from '../ui/FadeIn';
 import { CustomSelect } from '../ui/CustomSelect';
 import { Mail, Phone, MapPin, ArrowUpRight, Check } from '../icons/UIIcons';
 import { sendInquiry } from '../../services/contactService';
-import { RecaptchaWidget } from '../ui/RecaptchaWidget';
 
 export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +15,6 @@ export const Contact: React.FC = () => {
     message: ''
   });
   const [botcheck, setBotcheck] = useState('');
-  const [recaptchaToken, setRecaptchaToken] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [resultMessage, setResultMessage] = useState('');
   const [providerUsed, setProviderUsed] = useState<string>('');
@@ -58,22 +56,13 @@ export const Contact: React.FC = () => {
       return;
     }
 
-    // 3. Google reCAPTCHA Verification Check (enforced when VITE_RECAPTCHA_SITE_KEY is configured)
-    const isRecaptchaEnabled = Boolean(import.meta.env.VITE_RECAPTCHA_SITE_KEY);
-    if (isRecaptchaEnabled && !recaptchaToken) {
-      setStatus('error');
-      setResultMessage('Please check the "I\'m not a robot" reCAPTCHA box to verify you are human.');
-      return;
-    }
-
     setStatus('submitting');
     setResultMessage('');
 
     try {
       const res = await sendInquiry({
         ...formData,
-        botcheck,
-        recaptchaToken
+        botcheck
       });
 
       if (res.success) {
@@ -82,7 +71,6 @@ export const Contact: React.FC = () => {
         setProviderUsed(res.provider);
         setFormData({ name: '', email: '', type: '', message: '' });
         setBotcheck('');
-        setRecaptchaToken('');
         interactionStartTime.current = null;
         try {
           localStorage.setItem('alfie_contact_last_ts', String(Date.now()));
@@ -354,15 +342,12 @@ export const Contact: React.FC = () => {
                           />
                         </div>
 
-                        {/* Google reCAPTCHA Verification Widget */}
-                        <div className="mt-5">
-                          <RecaptchaWidget
-                            onVerify={(token) => {
-                              setRecaptchaToken(token);
-                              if (status === 'error') setStatus('idle');
-                            }}
-                            onExpire={() => setRecaptchaToken('')}
-                          />
+                        {/* Anti-spam status indicator */}
+                        <div className="mt-4 flex items-center gap-1.5 text-[11px] text-muted">
+                          <svg className="h-3.5 w-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                          </svg>
+                          <span>Anti-spam & bot protection enabled</span>
                         </div>
                       </div>
 

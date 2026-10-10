@@ -6,7 +6,6 @@ export interface InquiryPayload {
   type: string;
   message: string;
   botcheck?: string; // Honeypot field - bots fill this in, humans never see it
-  recaptchaToken?: string; // Google reCAPTCHA verification token
 }
 
 export interface InquiryResult {
