@@ -15,6 +15,7 @@ import { Process } from './components/sections/Process';
 import { Testimonials } from './components/sections/Testimonials';
 import { Contact } from './components/sections/Contact';
 import { Footer } from './components/sections/Footer';
+import { DevStationBadge } from './components/ui/DevStationBadge';
 
 function AppContent() {
   const { scrollRef, contentRef } = useLenisScroll();
@@ -50,6 +51,9 @@ function AppContent() {
           </div>
         </div>
       </div>
+
+      {/* DevStation Verified Showcase Badge */}
+      <DevStationBadge />
     </div>
   );
 }
