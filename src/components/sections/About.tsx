@@ -2,7 +2,7 @@ import React from 'react';
 import { about, profile } from '../../data/portfolioData';
 import { SectionHeader } from '../ui/SectionHeader';
 import { FadeIn } from '../ui/FadeIn';
-import { RevealText } from '../ui/RevealText';
+import { AppleScrollReveal } from '../ui/AppleScrollReveal';
 import { Check } from '../icons/UIIcons';
 
 export const About: React.FC = () => {
@@ -15,7 +15,17 @@ export const About: React.FC = () => {
           sub={about.intro}
         />
 
-        <div className="mt-10 grid grid-cols-1 gap-10 sm:mt-16 lg:grid-cols-2 lg:gap-20">
+        {/* Apple-style Scroll Scrub Text Reveal Showcase */}
+        <div className="mt-10 sm:mt-14 lg:mt-16">
+          <AppleScrollReveal
+            kicker="ENGINEERING MANIFESTO"
+            phrase="I architect high-performance web applications and decentralized systems with a focus on speed, aesthetics, and user experience — turning complex engineering into effortless digital products."
+            highlights={['high-performance', 'decentralized', 'speed', 'aesthetics', 'effortless']}
+            withCard={true}
+          />
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-10 sm:mt-16 lg:grid-cols-2 lg:gap-20">
           {/* Left Column: Story & Philosophy */}
           <div>
             <FadeIn y={20}>
@@ -24,10 +34,10 @@ export const About: React.FC = () => {
               </span>
             </FadeIn>
 
-            <RevealText
-              text={about.heading}
-              as="h3"
-              className="font-display display-tight mt-2 text-2xl font-bold text-ink sm:mt-3 sm:text-3xl lg:text-4xl"
+            <AppleScrollReveal
+              phrase={about.heading}
+              className="font-display tracking-tight leading-snug mt-2 text-2xl font-bold sm:mt-3 sm:text-3xl lg:text-4xl"
+              highlights={['modern', 'decentralized']}
             />
 
             <div className="mt-6 space-y-4">
