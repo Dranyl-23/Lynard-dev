@@ -19,39 +19,80 @@ const ProjectCard: React.FC<{
   const [imgError, setImgError] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
+  const thumbRef = useRef<HTMLDivElement>(null);
+  const arrowRef = useRef<HTMLDivElement>(null);
 
   const rotateXQuick = useRef<((val: number) => void) | null>(null);
   const rotateYQuick = useRef<((val: number) => void) | null>(null);
+  const thumbXQuick = useRef<((val: number) => void) | null>(null);
+  const thumbYQuick = useRef<((val: number) => void) | null>(null);
+  const arrowXQuick = useRef<((val: number) => void) | null>(null);
+  const arrowYQuick = useRef<((val: number) => void) | null>(null);
 
   useGSAP(() => {
     if (!cardRef.current) return;
     rotateXQuick.current = gsap.quickTo(cardRef.current, 'rotateX', {
-      duration: 0.35,
+      duration: 0.3,
       ease: 'power2.out'
     });
     rotateYQuick.current = gsap.quickTo(cardRef.current, 'rotateY', {
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+    if (thumbRef.current) {
+      thumbXQuick.current = gsap.quickTo(thumbRef.current, 'x', {
+        duration: 0.35,
+        ease: 'power2.out'
+      });
+      thumbYQuick.current = gsap.quickTo(thumbRef.current, 'y', {
+        duration: 0.35,
+        ease: 'power2.out'
+      });
+    }
+    if (arrowRef.current) {
+      arrowXQuick.current = gsap.quickTo(arrowRef.current, 'x', {
+        duration: 0.25,
+        ease: 'power2.out'
+      });
+      arrowYQuick.current = gsap.quickTo(arrowRef.current, 'y', {
+        duration: 0.25,
+        ease: 'power2.out'
+      });
+    }
+  }, { scope: cardRef });
+
+  const handleMouseEnter = () => {
+    if (!cardRef.current) return;
+    gsap.to(cardRef.current, {
+      scale: 1.03,
       duration: 0.35,
       ease: 'power2.out'
     });
-  }, { scope: cardRef });
+  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     if (!cardRef.current) return;
 
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-    const maxTilt = 8;
+    // Palpable, responsive 14-degree tilt
+    const maxTilt = 14;
     rotateXQuick.current?.(-y * maxTilt * 2);
     rotateYQuick.current?.(x * maxTilt * 2);
+
+    // Multi-layer physical parallax offsets
+    thumbXQuick.current?.(x * 12);
+    thumbYQuick.current?.(y * 12);
+    arrowXQuick.current?.(x * 24);
+    arrowYQuick.current?.(y * 24);
 
     if (glareRef.current) {
       const glareX = ((e.clientX - rect.left) / rect.width) * 100;
       const glareY = ((e.clientY - rect.top) / rect.height) * 100;
       glareRef.current.style.opacity = '1';
-      glareRef.current.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.18) 0%, transparent 60%)`;
+      glareRef.current.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.08) 40%, transparent 70%)`;
     }
   };
 
@@ -60,24 +101,35 @@ const ProjectCard: React.FC<{
     gsap.to(cardRef.current, {
       rotateX: 0,
       rotateY: 0,
-      duration: 0.6,
+      scale: 1,
+      duration: 0.65,
       ease: 'power2.out'
     });
+    if (thumbRef.current) {
+      gsap.to(thumbRef.current, { x: 0, y: 0, duration: 0.6, ease: 'power2.out' });
+    }
+    if (arrowRef.current) {
+      gsap.to(arrowRef.current, { x: 0, y: 0, duration: 0.6, ease: 'power2.out' });
+    }
     if (glareRef.current) {
       glareRef.current.style.opacity = '0';
     }
   };
 
   return (
-    <div style={{ perspective: 1000 }} className="h-full">
-      <motion.article
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.18 } }}
+      transition={{ duration: 0.35, delay: index * 0.03, ease: EXPO_OUT }}
+      style={{ perspective: 1100 }}
+      className="h-full"
+    >
+      <div
         ref={cardRef}
-        layout
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.18 } }}
-        transition={{ duration: 0.35, delay: index * 0.03, ease: EXPO_OUT }}
         onClick={onOpen}
+        onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         role="button"
@@ -90,7 +142,7 @@ const ProjectCard: React.FC<{
           }
         }}
         style={{ transformStyle: 'preserve-3d' }}
-        className="group relative h-full cursor-pointer rounded-2xl border border-line bg-white p-2.5 transition-shadow duration-500 hover:shadow-[0_32px_64px_-32px_rgba(20,20,20,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        className="group relative h-full cursor-pointer rounded-2xl border border-line bg-card p-2.5 transition-shadow duration-300 hover:shadow-[0_32px_64px_-24px_rgba(20,20,20,0.32)] dark:hover:shadow-[0_32px_64px_-24px_rgba(0,0,0,0.8)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         {/* Dynamic Specular Glare Overlay */}
         <div
@@ -99,10 +151,11 @@ const ProjectCard: React.FC<{
           className="pointer-events-none absolute inset-0 z-30 rounded-2xl opacity-0 transition-opacity duration-300"
         />
 
-        {/* Thumbnail Layer with 3D Elevation */}
+        {/* Thumbnail Layer with 3D Elevation & Parallax Offset */}
         <div
-          style={{ transform: 'translateZ(22px)' }}
-          className={`relative h-44 overflow-hidden rounded-xl transition-transform duration-500 sm:h-64 ${
+          ref={thumbRef}
+          style={{ transform: 'translateZ(26px)', transformStyle: 'preserve-3d' }}
+          className={`relative h-44 overflow-hidden rounded-xl sm:h-64 ${
             project.image && !imgError ? 'bg-paper' : `bg-gradient-to-br ${palette}`
           }`}
         >
@@ -113,22 +166,23 @@ const ProjectCard: React.FC<{
               loading="lazy"
               decoding="async"
               onError={() => setImgError(true)}
-              className="h-full w-full object-cover object-center transition-transform duration-1000 ease-out-expo group-hover:scale-105"
+              className="h-full w-full object-cover object-center transition-transform duration-700 ease-out-expo group-hover:scale-105"
             />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center transition-transform duration-1000 ease-out-expo group-hover:scale-110">
-              <span className="font-display display-tight px-6 text-center text-xl font-black uppercase text-white/25 sm:text-2xl">
+            <div className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-out-expo group-hover:scale-110">
+              <span className="font-display px-6 text-center text-xl font-black uppercase text-white/25 sm:text-2xl">
                 {project.title}
               </span>
             </div>
           )}
 
-          {/* Hover Action Circle (Layered higher in 3D) */}
+          {/* Hover Action Circle (Floating High in 3D) */}
           <div
-            style={{ transform: 'translateZ(32px)' }}
-            className="absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-700 ease-out-expo group-hover:bg-ink/25 group-hover:opacity-100"
+            ref={arrowRef}
+            style={{ transform: 'translateZ(44px)' }}
+            className="absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-500 ease-out-expo group-hover:bg-ink/20 group-hover:opacity-100"
           >
-            <span className="flex h-14 w-14 scale-75 items-center justify-center rounded-full bg-white text-ink shadow-xl transition-all duration-700 ease-out-expo group-hover:scale-100">
+            <span className="flex h-14 w-14 scale-75 items-center justify-center rounded-full bg-white text-ink shadow-2xl transition-all duration-500 ease-out-expo group-hover:scale-100">
               <ArrowUpRight className="h-5 w-5" />
             </span>
           </div>
@@ -136,7 +190,7 @@ const ProjectCard: React.FC<{
 
         {/* Title & Metadata Layer with 3D Elevation */}
         <div
-          style={{ transform: 'translateZ(14px)' }}
+          style={{ transform: 'translateZ(16px)' }}
           className="px-2 pb-2.5 pt-3 sm:px-2.5 sm:pb-3 sm:pt-4"
         >
           <h3 className="text-[15px] font-semibold leading-snug text-ink sm:text-[17px]">
@@ -144,11 +198,11 @@ const ProjectCard: React.FC<{
           </h3>
 
           <div className="mt-2.5 flex flex-wrap gap-1.5 sm:mt-3 sm:gap-2">
-            <span className="pill-shadow inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1 text-[11px] text-ink/80 sm:px-3.5 sm:py-1.5 sm:text-xs">
+            <span className="pill-shadow inline-flex items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1 text-[11px] text-ink/80 sm:px-3.5 sm:py-1.5 sm:text-xs">
               <CategoryIcon category={project.category} className="h-3 w-3" />
               {project.category}
             </span>
-            <span className="pill-shadow inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1 text-[11px] text-ink/80 sm:px-3.5 sm:py-1.5 sm:text-xs">
+            <span className="pill-shadow inline-flex items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1 text-[11px] text-ink/80 sm:px-3.5 sm:py-1.5 sm:text-xs">
               {project.stack.slice(0, 3).map((stk, sIdx) => (
                 <span key={stk} className="inline-flex items-center gap-1">
                   {sIdx > 0 && <span className="text-ink/30">•</span>}
@@ -158,8 +212,8 @@ const ProjectCard: React.FC<{
             </span>
           </div>
         </div>
-      </motion.article>
-    </div>
+      </div>
+    </motion.article>
   );
 };
 
