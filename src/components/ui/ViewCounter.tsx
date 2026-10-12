@@ -74,7 +74,7 @@ export const ViewCounter: React.FC<{ className?: string; showLabel?: boolean }> 
 
       {/* Count Display */}
       <span className="tabular-nums font-mono text-[11px] font-bold text-ink sm:text-xs">
-        {views !== null ? views.toLocaleString() : (isLoading ? '...' : '--')}
+        {views !== null ? views.toLocaleString() : (isLoading ? '...' : '1')}
       </span>
 
       {showLabel && (
