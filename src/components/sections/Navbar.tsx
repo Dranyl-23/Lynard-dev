@@ -5,6 +5,7 @@ import { useLenisScroll } from '../LenisProvider';
 import { ArrowUpRight, Menu, X } from '../icons/UIIcons';
 import { EXPO_OUT } from '../ui/FadeIn';
 import { ThemeToggle } from '../ui/ThemeToggle';
+import { ViewCounter } from '../ui/ViewCounter';
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -54,8 +55,9 @@ export const Navbar: React.FC = () => {
           ))}
         </nav>
 
-        {/* Right: Theme Toggle, Desktop CTA & Mobile Menu Toggle */}
+        {/* Right: View Counter, Theme Toggle, Desktop CTA & Mobile Menu Toggle */}
         <div className="flex items-center gap-2">
+          <ViewCounter />
           <ThemeToggle />
 
           <button
