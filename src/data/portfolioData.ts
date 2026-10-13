@@ -186,7 +186,7 @@ export const projects: Project[] = [
     description:
       'Personal developer portfolio built with modern typography, reactive presence indicators, and interactive terminal chat.',
     stack: ['Tailwind', 'TypeScript', 'Vercel'],
-    link: 'https://www.lynard-dev.website',
+    link: 'https://Lynard.vercel.app',
     image: '/mockups/Lynard-Portfolio.webp',
     logo: '/favicon.svg',
   }
