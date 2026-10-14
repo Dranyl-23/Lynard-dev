@@ -153,7 +153,7 @@ export const projects: Project[] = [
     description:
       'AI-Powered Smart Schedule & Timetable Assistant built with Flutter & Dart. Uses On-Device Neural Vision (Google ML Kit) and Gemini AI to turn timetable screenshots into smart, reminder-ready schedules.',
     stack: ['Flutter', 'Dart', 'Gemini AI', 'Firebase'],
-    link: 'https://github.com/Dranyl-23/Reminda',
+    link: 'https://getreminda.vercel.app/',
     image: '/mockups/Reminda.webp',
     logo: '/projects/reminda.webp'
   },
