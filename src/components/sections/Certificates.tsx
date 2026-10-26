@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { certificates, type CertificateItem } from '../../data/content'
+import { useTheme } from '../../lib/theme'
 import CurvedCarousel from '../CurvedCarousel'
 import { SectionHeader } from '../SectionHeader'
 import {
@@ -10,6 +11,8 @@ import {
 
 export function Certificates() {
   const [activeModalCert, setActiveModalCert] = useState<CertificateItem | null>(null)
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -46,9 +49,9 @@ export function Certificates() {
           gap={32}
           radius={16}
           momentum={0.92}
-          paper="#0d0d0d"
-          cardBorder="rgba(255, 255, 255, 0.14)"
-          captionColor="#ffffff"
+          paper={isLight ? '#ffffff' : '#0d0d0d'}
+          cardBorder={isLight ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.14)'}
+          captionColor={isLight ? '#0d0d0d' : '#ffffff'}
           captionSize={15}
           numberSize={12}
           onSelect={(item) => {

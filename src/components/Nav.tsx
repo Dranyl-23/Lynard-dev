@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
+import { FiMoon, FiSun } from 'react-icons/fi'
 import { navLinks, profile } from '../data/content'
 import { ease } from '../lib/motion'
 import { openResumeModal, scrollToTarget } from '../lib/scroll'
+import { useTheme } from '../lib/theme'
 
 export function Nav({ ready }: { ready: boolean }) {
   const [hidden, setHidden] = useState(false)
   const [open, setOpen] = useState(false)
   const { scrollY } = useScroll()
+  const { theme, toggleTheme } = useTheme()
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const prev = scrollY.getPrevious() ?? 0
@@ -45,10 +48,35 @@ export function Nav({ ready }: { ready: boolean }) {
           >
             Resume ↗
           </button>
+          <button
+            type="button"
+            className="nav__theme-btn mono"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            <span className="nav__theme-icon">
+              {theme === 'dark' ? <FiSun /> : <FiMoon />}
+            </span>
+            <span className="nav__theme-text">{theme === 'dark' ? 'Light' : 'Dark'}</span>
+          </button>
         </nav>
-        <button className="nav__toggle mono" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-          {open ? 'Close' : 'Menu'}
-        </button>
+        <div className="nav__mobile-actions">
+          <button
+            type="button"
+            className="nav__theme-btn nav__theme-btn--mobile mono"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            <span className="nav__theme-icon">
+              {theme === 'dark' ? <FiSun /> : <FiMoon />}
+            </span>
+          </button>
+          <button className="nav__toggle mono" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+            {open ? 'Close' : 'Menu'}
+          </button>
+        </div>
       </motion.header>
 
       <AnimatePresence>
@@ -71,13 +99,8 @@ export function Nav({ ready }: { ready: boolean }) {
                 {link.label}
               </motion.a>
             ))}
-            <motion.button
-              type="button"
-              className="menu__resume"
-              onClick={() => {
-                setOpen(false)
-                openResumeModal()
-              }}
+            <motion.div
+              className="menu__footer"
               initial={{ y: 40, opacity: 0 }}
               animate={{
                 y: 0,
@@ -85,8 +108,25 @@ export function Nav({ ready }: { ready: boolean }) {
                 transition: { delay: 0.3 + navLinks.length * 0.07, duration: 0.6, ease },
               }}
             >
-              Resume ↗
-            </motion.button>
+              <button
+                type="button"
+                className="menu__resume"
+                onClick={() => {
+                  setOpen(false)
+                  openResumeModal()
+                }}
+              >
+                Resume ↗
+              </button>
+              <button
+                type="button"
+                className="menu__theme-toggle mono"
+                onClick={toggleTheme}
+              >
+                <span className="menu__theme-icon">{theme === 'dark' ? <FiSun /> : <FiMoon />}</span>
+                <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

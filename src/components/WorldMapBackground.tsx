@@ -58,14 +58,14 @@ export function WorldMapBackground() {
       >
         <defs>
           <linearGradient id={`arc-${uid}`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(245, 245, 243, 0.08)" />
-            <stop offset="50%" stopColor="rgba(245, 245, 243, 0.85)" />
-            <stop offset="100%" stopColor="rgba(245, 245, 243, 0.12)" />
+            <stop offset="0%" stopColor="var(--line)" />
+            <stop offset="50%" stopColor="var(--fg)" stopOpacity="0.85" />
+            <stop offset="100%" stopColor="var(--line)" />
           </linearGradient>
         </defs>
 
         {/* High-performance single-drawcall world map dot vector */}
-        <path d={worldMapPath} fill="rgba(245, 245, 243, 0.16)" />
+        <path d={worldMapPath} fill="var(--fg)" opacity="0.16" />
 
         {/* Global Connection Arcs */}
         <g className="world-map__routes">
@@ -74,7 +74,7 @@ export function WorldMapBackground() {
               <path
                 d={route.path}
                 fill="none"
-                stroke="rgba(245, 245, 243, 0.1)"
+                stroke="var(--line)"
                 strokeWidth="1"
                 strokeDasharray="3 4"
               />
@@ -102,19 +102,21 @@ export function WorldMapBackground() {
                 cx={route.to.x}
                 cy={route.to.y}
                 r="2.5"
-                fill="rgba(245, 245, 243, 0.88)"
+                fill="var(--fg)"
+                opacity="0.88"
               />
             </g>
           ))}
 
           {/* Origin: Digos City, Philippines */}
-          <circle cx={originPt.x} cy={originPt.y} r="3.4" fill="#f5f5f3" />
+          <circle cx={originPt.x} cy={originPt.y} r="3.4" fill="var(--fg)" />
           <circle
             cx={originPt.x}
             cy={originPt.y}
             r="9.5"
             fill="none"
-            stroke="rgba(245, 245, 243, 0.45)"
+            stroke="var(--fg)"
+            strokeOpacity="0.45"
             strokeWidth="1.2"
             className="world-map__pulse"
           />
