@@ -1548,8 +1548,8 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   height: clamp(260px, 42vw, 520px);
   pointer-events: none;
   z-index: 1;
-  filter: invert(1) brightness(0.85) contrast(1.15);
-  opacity: 0.28;
+  filter: grayscale(100%) invert(1) brightness(0.75) contrast(1.25);
+  opacity: 0.22;
   transition: opacity 0.4s var(--ease), filter 0.4s var(--ease);
 }
 
