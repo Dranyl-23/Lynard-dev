@@ -2605,7 +2605,7 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 }
 
 /* ========================================================================= */
-/* THEME CURTAIN (RIGHT TO LEFT ARCHITECTURAL SWEEP) */
+/* THEME CURTAIN (EXACT PRELOADER-STYLE ARCHITECTURAL CURTAIN REVEAL) */
 /* ========================================================================= */
 .theme-curtain {
   position: fixed;
@@ -2617,68 +2617,66 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   overflow: hidden;
 }
 
-.theme-curtain__layer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  will-change: transform;
-}
-
-/* Light Mode Target Curtain (Warm Paper White) */
-.theme-curtain--light .theme-curtain__layer--accent {
-  background: #ebebe7;
-  border-left: 2px solid #0d0d0d;
-}
-.theme-curtain--light .theme-curtain__layer--main {
-  background: #f8f8f6;
-  color: #0d0d0d;
-  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.15);
-}
-.theme-curtain--light .theme-curtain__col {
-  border-right: 1px solid rgba(13, 13, 13, 0.08);
-}
-.theme-curtain--light .theme-curtain__pill {
-  border-color: rgba(13, 13, 13, 0.2);
-  background: rgba(13, 13, 13, 0.04);
-  color: #0d0d0d;
-}
-
-/* Dark Mode Target Curtain (Deep OLED Black) */
-.theme-curtain--dark .theme-curtain__layer--accent {
-  background: #181818;
-  border-left: 2px solid #f5f5f3;
-}
-.theme-curtain--dark .theme-curtain__layer--main {
-  background: #0a0a0a;
-  color: #f5f5f3;
-  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.6);
-}
-.theme-curtain--dark .theme-curtain__col {
-  border-right: 1px solid rgba(245, 245, 243, 0.08);
-}
-.theme-curtain--dark .theme-curtain__pill {
-  border-color: rgba(245, 245, 243, 0.2);
-  background: rgba(255, 255, 255, 0.04);
-  color: #f5f5f3;
-}
-
-/* 5 Architectural Vertical Slat Grid */
-.theme-curtain__grid {
+.theme-curtain__curtains {
   position: absolute;
   inset: 0;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  pointer-events: none;
-}
-.theme-curtain__col {
-  height: 100%;
-}
-.theme-curtain__col:last-child {
-  border-right: 0;
 }
 
-/* Minimalist Editorial HUD in Center */
+.theme-curtain__column {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.theme-curtain__slat {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/* Light Mode Target Curtain (Warm Paper White main, ink black accent) */
+.theme-curtain--light .theme-curtain__slat--main {
+  background: #f8f8f6;
+  border-right: 1px solid rgba(13, 13, 13, 0.08);
+}
+.theme-curtain--light .theme-curtain__column:last-child .theme-curtain__slat--main {
+  border-right: 0;
+}
+.theme-curtain--light .theme-curtain__slat--accent {
+  background: #0d0d0d;
+}
+.theme-curtain--light .theme-curtain__pill {
+  border-color: rgba(13, 13, 13, 0.2);
+  background: rgba(13, 13, 13, 0.05);
+  color: #0d0d0d;
+}
+.theme-curtain--light .theme-curtain__label {
+  color: rgba(13, 13, 13, 0.5);
+}
+
+/* Dark Mode Target Curtain (Deep OLED Black main, ivory accent) */
+.theme-curtain--dark .theme-curtain__slat--main {
+  background: #0a0a0a;
+  border-right: 1px solid rgba(245, 245, 243, 0.08);
+}
+.theme-curtain--dark .theme-curtain__column:last-child .theme-curtain__slat--main {
+  border-right: 0;
+}
+.theme-curtain--dark .theme-curtain__slat--accent {
+  background: #f5f5f3;
+}
+.theme-curtain--dark .theme-curtain__pill {
+  border-color: rgba(245, 245, 243, 0.22);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f5f5f3;
+}
+.theme-curtain--dark .theme-curtain__label {
+  color: rgba(245, 245, 243, 0.5);
+}
+
+/* Center HUD Badge */
 .theme-curtain__hud {
   position: absolute;
   inset: 0;
@@ -2699,6 +2697,7 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   border: 1px solid currentColor;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
 }
 .theme-curtain__icon {
   font-size: 1.15rem;
@@ -2713,6 +2712,14 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 .theme-curtain__label {
   font-size: 0.65rem;
   letter-spacing: 0.18em;
-  opacity: 0.45;
   text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .theme-curtain__curtains {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .theme-curtain__column:nth-child(n + 4) {
+    display: none;
+  }
 }
