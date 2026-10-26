@@ -1298,7 +1298,7 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 /* ---------- Contact ---------- */
 .contact {
   position: relative;
-  padding-bottom: 3rem;
+  padding-bottom: clamp(5rem, 10vw, 8rem);
   isolation: isolate;
   overflow: hidden;
 }
@@ -1523,12 +1523,13 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 .reveal-footer {
   position: relative;
   width: 100%;
-  margin-top: clamp(4rem, 8vw, 7rem);
-  padding-top: clamp(3.5rem, 6vw, 6rem);
+  margin: 0;
+  padding: clamp(4rem, 7vw, 6.5rem) var(--pad) clamp(2.5rem, 4vw, 3.5rem);
   border-top: 1px solid var(--line);
   overflow: hidden;
-  background: transparent;
+  background: var(--bg);
   color: var(--fg);
+  transition: background-color 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 
 /* Background Alpine Panorama Ink Canvas */
@@ -1541,14 +1542,14 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   height: clamp(260px, 42vw, 520px);
   pointer-events: none;
   z-index: 1;
-  filter: invert(1) brightness(0.85) contrast(1.15);
-  opacity: 0.28;
+  filter: grayscale(100%) invert(1) brightness(0.85) contrast(1.2);
+  opacity: 0.22;
   transition: opacity 0.4s var(--ease), filter 0.4s var(--ease);
 }
 
 [data-theme='light'] .reveal-footer__canvas-wrap {
-  filter: brightness(0.92) contrast(1.2);
-  opacity: 0.38;
+  filter: grayscale(100%) contrast(1.2) brightness(0.92);
+  opacity: 0.28;
 }
 
 .reveal-footer__canvas {

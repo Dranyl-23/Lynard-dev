@@ -5,6 +5,7 @@ import { MouseTrail } from './components/MouseTrail'
 import { Nav } from './components/Nav'
 import { Preloader } from './components/Preloader'
 import { ResumeModal } from './components/ResumeModal'
+import { RevealFooter } from './components/RevealFooter'
 import { ScrollProgress } from './components/ScrollProgress'
 import { ThemeCurtain } from './components/ThemeCurtain'
 import { About } from './components/sections/About'
@@ -46,6 +47,7 @@ export default function App() {
         <Experience />
         <Contact />
       </main>
+      <RevealFooter />
     </MotionConfig>
   )
 }

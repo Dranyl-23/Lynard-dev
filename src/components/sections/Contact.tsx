@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { profile } from '../../data/content'
 import { easeOut } from '../../lib/motion'
 import { PostalContactForm } from '../PostalContactForm'
-import { RevealFooter } from '../RevealFooter'
 import { SectionHeader } from '../SectionHeader'
 import { SplitText } from '../SplitText'
 import { WorldMapBackground } from '../WorldMapBackground'
@@ -75,8 +74,6 @@ export function Contact() {
           <PostalContactForm />
         </motion.div>
       </div>
-
-      <RevealFooter />
     </section>
   )
 }
