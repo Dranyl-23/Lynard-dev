@@ -18,10 +18,7 @@ function drawFitted(
   width: number,
   height: number,
 ) {
-  const ratio = Math.max(width / image.naturalWidth, height / image.naturalHeight)
-  const w = image.naturalWidth * ratio
-  const h = image.naturalHeight * ratio
-  ctx.drawImage(image, (width - w) / 2, height - h, w, h)
+  ctx.drawImage(image, 0, 0, width, height)
 }
 
 /**
@@ -200,13 +197,12 @@ export function RevealFooter() {
             <div className="reveal-footer__headline">
               <h2 className="reveal-footer__headline-text">
                 <span>Go beyond</span>
-                <span className="serif-i">the last page.</span>
+                <span>the last page.</span>
               </h2>
             </div>
 
             <p className="reveal-footer__copy muted">
-              A little space for what comes next. Available for select engineering,
-              architecture, and full-stack partnerships worldwide.
+              A little space for what comes next. Make this ending yours.
             </p>
           </div>
 
@@ -241,9 +237,9 @@ export function RevealFooter() {
               </ul>
             </div>
 
-            {/* Elsewhere / Follow Column */}
+            {/* Follow Column */}
             <div className="reveal-footer__col">
-              <span className="reveal-footer__eyebrow mono">ELSEWHERE</span>
+              <span className="reveal-footer__eyebrow mono">FOLLOW</span>
               <ul className="reveal-footer__links">
                 {profile.socials.map((social) => (
                   <li key={social.label}>

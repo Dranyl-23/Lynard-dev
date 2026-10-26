@@ -1518,13 +1518,15 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 }
 
 /* ========================================================================= */
-/* FRAMER REVEAL FOOTER (MONOCHROME EDITORIAL & INK REVEAL) */
+/* FRAMER REVEAL FOOTER (ORIGINAL COLOR IN LIGHT MODE, MONOCHROME IN DARK) */
 /* ========================================================================= */
 .reveal-footer {
   position: relative;
   width: 100%;
   margin: 0;
-  padding: clamp(4rem, 7vw, 6.5rem) var(--pad) clamp(2.5rem, 4vw, 3.5rem);
+  padding-top: clamp(4rem, 6vw, 5.5rem);
+  padding-bottom: clamp(240px, 34vw, 480px);
+  padding-inline: var(--pad);
   border-top: 1px solid var(--line);
   overflow: hidden;
   background: var(--bg);
@@ -1535,11 +1537,11 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 /* Background Alpine Panorama Ink Canvas */
 .reveal-footer__canvas-wrap {
   position: absolute;
-  bottom: -15px;
+  bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
-  height: clamp(260px, 42vw, 520px);
+  height: clamp(260px, 36vw, 500px);
   pointer-events: none;
   z-index: 1;
   filter: grayscale(100%) invert(1) brightness(0.85) contrast(1.2);
@@ -1547,9 +1549,10 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   transition: opacity 0.4s var(--ease), filter 0.4s var(--ease);
 }
 
+/* Light Mode: Original vibrant colors and full opacity as shown in Framer design */
 [data-theme='light'] .reveal-footer__canvas-wrap {
-  filter: grayscale(100%) contrast(1.2) brightness(0.92);
-  opacity: 0.28;
+  filter: none;
+  opacity: 1;
 }
 
 .reveal-footer__canvas {
@@ -1565,7 +1568,7 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: clamp(3.5rem, 6vw, 5.5rem);
+  gap: clamp(3rem, 5vw, 4.5rem);
 }
 
 .reveal-footer__top {
@@ -1616,11 +1619,11 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 }
 
 .reveal-footer__headline-text {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(2.8rem, 6.2vw, 5.6rem);
-  line-height: 0.96;
-  letter-spacing: -0.025em;
-  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 600;
 }
 
 .reveal-footer__headline-text span {
@@ -1680,30 +1683,29 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   align-items: center;
   gap: 1.5rem;
   flex-wrap: wrap;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
+  padding-top: 1rem;
   font-size: 0.72rem;
+  letter-spacing: 0.04em;
 }
 
 .reveal-footer__top-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 1.05rem;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  font-size: 0.72rem;
-  cursor: pointer;
+  gap: 0.35rem;
+  padding: 0;
   background: transparent;
+  border: none;
+  font-size: 0.72rem;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
   color: var(--fg);
-  transition: background-color 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
 }
 
 .reveal-footer__top-btn:hover {
-  background: var(--fg);
-  color: var(--bg);
-  border-color: var(--fg);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  opacity: 0.7;
 }
 
 @media (max-width: 900px) {
