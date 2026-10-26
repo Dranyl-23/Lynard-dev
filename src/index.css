@@ -1261,6 +1261,9 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 @media (max-width: 560px) { .skills__grid { grid-template-columns: 1fr; } }
 
 /* ---------- Experience ---------- */
+#experience.section {
+  padding-top: clamp(1.5rem, 3.5vw, 3rem);
+}
 .exp__row {
   position: relative;
   display: grid;
@@ -1526,10 +1529,14 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 .footer button:hover { opacity: 0.6; }
 
 /* ---------- Certificates Section & Framer Curved Carousel ---------- */
+.certificates {
+  padding-bottom: 0;
+}
+
 .certificates__slider-wrapper {
   width: 100%;
-  margin-top: 1rem;
-  margin-bottom: clamp(2rem, 5vw, 4rem);
+  margin-top: 0.5rem;
+  margin-bottom: 0;
 }
 
 .curved-carousel-wrapper {
@@ -1618,7 +1625,7 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 .curved-carousel__stage {
   position: relative;
   width: 100%;
-  height: clamp(380px, 45vw, 520px);
+  height: clamp(320px, 28vw, 360px);
   overflow: hidden;
   user-select: none;
   touch-action: pan-y;
