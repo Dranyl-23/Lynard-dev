@@ -1517,16 +1517,210 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   }
 }
 
-.footer {
-  margin-top: clamp(5rem, 10vw, 9rem);
-  padding-top: 1.5rem;
+/* ========================================================================= */
+/* FRAMER REVEAL FOOTER (MONOCHROME EDITORIAL & INK REVEAL) */
+/* ========================================================================= */
+.reveal-footer {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding-top: clamp(3.5rem, 6vw, 6rem);
   border-top: 1px solid var(--line);
+  overflow: hidden;
+  background: transparent;
+  color: var(--fg);
+}
+
+/* Background Alpine Panorama Ink Canvas */
+.reveal-footer__canvas-wrap {
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: clamp(260px, 42vw, 520px);
+  pointer-events: none;
+  z-index: 1;
+  filter: invert(1) brightness(0.85) contrast(1.15);
+  opacity: 0.28;
+  transition: opacity 0.4s var(--ease), filter 0.4s var(--ease);
+}
+
+[data-theme='light'] .reveal-footer__canvas-wrap {
+  filter: brightness(0.92) contrast(1.2);
+  opacity: 0.38;
+}
+
+.reveal-footer__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Layered Foreground Content */
+.reveal-footer__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.reveal-footer__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: clamp(2.5rem, 5vw, 6rem);
+  align-items: start;
+}
+
+.reveal-footer__statement {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  max-width: 44rem;
+}
+
+/* Interactive Orbit Logo */
+.reveal-footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.reveal-footer__orbit {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.reveal-footer__orbit-core {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.reveal-footer__wordmark {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.reveal-footer__headline-text {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6.2vw, 5.6rem);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+
+.reveal-footer__headline-text span {
+  display: block;
+}
+
+.reveal-footer__copy {
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  line-height: 1.5;
+  max-width: 32rem;
+}
+
+/* Navigation Columns */
+.reveal-footer__nav {
+  display: flex;
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  justify-content: flex-end;
+}
+
+.reveal-footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 120px;
+}
+
+.reveal-footer__eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.reveal-footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+}
+
+.reveal-footer__links a {
+  color: var(--fg);
+  opacity: 0.75;
+  display: inline-block;
+  cursor: pointer;
+  transition: opacity 0.25s var(--ease);
+}
+
+.reveal-footer__links a:hover {
+  opacity: 1;
+}
+
+/* Bottom Bar */
+.reveal-footer__bottom {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.5rem;
   flex-wrap: wrap;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.72rem;
 }
-.footer button:hover { opacity: 0.6; }
+
+.reveal-footer__top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.05rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.72rem;
+  cursor: pointer;
+  background: transparent;
+  color: var(--fg);
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.reveal-footer__top-btn:hover {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .reveal-footer__top {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .reveal-footer__nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .reveal-footer__nav {
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+}
 
 /* ---------- Certificates Section & Framer Curved Carousel ---------- */
 .certificates {

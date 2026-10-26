@@ -2,13 +2,11 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { profile } from '../../data/content'
 import { easeOut } from '../../lib/motion'
-import { scrollToTarget } from '../../lib/scroll'
 import { PostalContactForm } from '../PostalContactForm'
+import { RevealFooter } from '../RevealFooter'
 import { SectionHeader } from '../SectionHeader'
 import { SplitText } from '../SplitText'
 import { WorldMapBackground } from '../WorldMapBackground'
-
-const YEAR = new Date().getFullYear()
 
 export function Contact() {
   const [copied, setCopied] = useState(false)
@@ -78,13 +76,7 @@ export function Contact() {
         </motion.div>
       </div>
 
-      <footer className="footer mono muted">
-        <span>
-          © {YEAR} {profile.name}
-        </span>
-        <span>Built with Vite, TypeScript & Framer Motion</span>
-        <button onClick={() => scrollToTarget(0)}>Back to top ↑</button>
-      </footer>
+      <RevealFooter />
     </section>
   )
 }
