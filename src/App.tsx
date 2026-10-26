@@ -6,6 +6,7 @@ import { Nav } from './components/Nav'
 import { Preloader } from './components/Preloader'
 import { ResumeModal } from './components/ResumeModal'
 import { ScrollProgress } from './components/ScrollProgress'
+import { ThemeCurtain } from './components/ThemeCurtain'
 import { About } from './components/sections/About'
 import { Certificates } from './components/sections/Certificates'
 import { Contact } from './components/sections/Contact'
@@ -32,6 +33,7 @@ export default function App() {
       <MouseTrail />
       <Cursor />
       <ScrollProgress />
+      <ThemeCurtain />
       <AnimatePresence>{!ready && <Preloader onDone={done} />}</AnimatePresence>
       <Nav ready={ready} />
       <ResumeModal />

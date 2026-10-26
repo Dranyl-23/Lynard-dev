@@ -2603,3 +2603,116 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 [data-theme='light'] .exp__resume-bar {
   background: rgba(0, 0, 0, 0.02);
 }
+
+/* ========================================================================= */
+/* THEME CURTAIN (RIGHT TO LEFT ARCHITECTURAL SWEEP) */
+/* ========================================================================= */
+.theme-curtain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 200;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.theme-curtain__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+/* Light Mode Target Curtain (Warm Paper White) */
+.theme-curtain--light .theme-curtain__layer--accent {
+  background: #ebebe7;
+  border-left: 2px solid #0d0d0d;
+}
+.theme-curtain--light .theme-curtain__layer--main {
+  background: #f8f8f6;
+  color: #0d0d0d;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.15);
+}
+.theme-curtain--light .theme-curtain__col {
+  border-right: 1px solid rgba(13, 13, 13, 0.08);
+}
+.theme-curtain--light .theme-curtain__pill {
+  border-color: rgba(13, 13, 13, 0.2);
+  background: rgba(13, 13, 13, 0.04);
+  color: #0d0d0d;
+}
+
+/* Dark Mode Target Curtain (Deep OLED Black) */
+.theme-curtain--dark .theme-curtain__layer--accent {
+  background: #181818;
+  border-left: 2px solid #f5f5f3;
+}
+.theme-curtain--dark .theme-curtain__layer--main {
+  background: #0a0a0a;
+  color: #f5f5f3;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.6);
+}
+.theme-curtain--dark .theme-curtain__col {
+  border-right: 1px solid rgba(245, 245, 243, 0.08);
+}
+.theme-curtain--dark .theme-curtain__pill {
+  border-color: rgba(245, 245, 243, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5f5f3;
+}
+
+/* 5 Architectural Vertical Slat Grid */
+.theme-curtain__grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  pointer-events: none;
+}
+.theme-curtain__col {
+  height: 100%;
+}
+.theme-curtain__col:last-child {
+  border-right: 0;
+}
+
+/* Minimalist Editorial HUD in Center */
+.theme-curtain__hud {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  z-index: 2;
+  pointer-events: none;
+}
+.theme-curtain__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1.45rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.theme-curtain__icon {
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+}
+.theme-curtain__title {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+.theme-curtain__label {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  opacity: 0.45;
+  text-transform: uppercase;
+}

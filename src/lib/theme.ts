@@ -18,13 +18,44 @@ export function applyTheme(theme: Theme) {
   try {
     localStorage.setItem(THEME_KEY, theme)
   } catch {
-    // ignore local storage errors
+    // ignore
   }
   const meta = document.querySelector('meta[name="theme-color"]')
   if (meta) {
     meta.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#f8f8f6')
   }
   window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme } }))
+}
+
+type CurtainHandler = (targetTheme: Theme) => void
+let curtainHandler: CurtainHandler | null = null
+let isCurtainBusy = false
+
+export function registerThemeCurtain(fn: CurtainHandler) {
+  curtainHandler = fn
+  return () => {
+    if (curtainHandler === fn) curtainHandler = null
+  }
+}
+
+export function setCurtainBusy(busy: boolean) {
+  isCurtainBusy = busy
+}
+
+export function requestThemeToggle(currentTheme: Theme, setThemeState: (t: Theme) => void) {
+  if (isCurtainBusy) return
+  const next: Theme = currentTheme === 'dark' ? 'light' : 'dark'
+  const reduceMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (reduceMotion || !curtainHandler) {
+    setThemeState(next)
+    applyTheme(next)
+    return
+  }
+
+  isCurtainBusy = true
+  setThemeState(next)
+  curtainHandler(next)
 }
 
 export function useTheme() {
@@ -46,17 +77,7 @@ export function useTheme() {
   }, [theme])
 
   const toggleTheme = () => {
-    const next: Theme = theme === 'dark' ? 'light' : 'dark'
-    if (typeof document !== 'undefined' && 'startViewTransition' in document) {
-      // Modern smooth view transition if supported
-      ;(document as unknown as { startViewTransition: (cb: () => void) => void }).startViewTransition(() => {
-        setThemeState(next)
-        applyTheme(next)
-      })
-    } else {
-      setThemeState(next)
-      applyTheme(next)
-    }
+    requestThemeToggle(theme, setThemeState)
   }
 
   return { theme, toggleTheme, setTheme: setThemeState }
