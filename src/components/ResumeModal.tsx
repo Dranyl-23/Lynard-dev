@@ -126,7 +126,8 @@ export function ResumeModal() {
                         <img
                           src={src}
                           alt={`${profile.fullName} — Resume Page ${idx + 1}`}
-                          loading="eager"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </div>
                       <figcaption className="mono muted resume-sheet__caption">

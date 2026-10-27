@@ -15,7 +15,7 @@ export function Experience() {
             className="exp__row"
             initial="hidden"
             whileInView="show"
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <motion.span
               className="exp__line"

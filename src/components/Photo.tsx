@@ -9,7 +9,7 @@ export function Photo({ src, label, alt = '' }: PhotoProps) {
   return (
     <div className="photo">
       {src ? (
-        <img src={src} alt={alt || label} loading="lazy" />
+        <img src={src} alt={alt || label} loading="lazy" decoding="async" />
       ) : (
         <div className="photo__placeholder mono">{label}</div>
       )}

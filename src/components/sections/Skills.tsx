@@ -27,8 +27,8 @@ export function Skills() {
                     className="skills__item"
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.2 }}
-                    transition={{ duration: 0.7, delay: g * 0.06 + i * 0.05, ease: easeOut }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.5, delay: Math.min(g * 0.04 + i * 0.03, 0.25), ease: easeOut }}
                   >
                     <span className="skills__item-name">
                       {Icon && <Icon className="skills__item-icon" aria-hidden="true" />}

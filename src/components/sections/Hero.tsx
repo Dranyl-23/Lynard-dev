@@ -45,6 +45,7 @@ export function Hero({ ready }: { ready: boolean }) {
     const hero = heroRef.current
     if (!hero) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (!window.matchMedia('(pointer: fine)').matches) return
 
     const glyphs: GlyphPhysics[] = chars.map(() => ({
       x: 0,

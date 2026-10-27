@@ -11,7 +11,7 @@ import figmaFusionCert from '../assets/certificate/FigmaFusion-Cor-Jesu.webp'
 import openxaiCert from '../assets/certificate/OpenxAI-Davao-DeFi.webp'
 import rustSchoolCert from '../assets/certificate/Rust-School-HER-DAO.webp'
 import stellarHackathonCert from '../assets/certificate/StellarX-Hackathon.webp'
-import nexusImg from '../assets/projects/4PS Nexus.png'
+import nexusImg from '../assets/projects/4PS-Nexus.jpg'
 import chainbudgetImg from '../assets/projects/Chainbudget.webp'
 import navySharksImg from '../assets/projects/NavySharks.webp'
 import remindaImg from '../assets/projects/Reminda.webp'
@@ -25,6 +25,8 @@ export interface CertificateItem {
   year: string
   image: string
   fill?: 'framed' | 'bleed'
+  description?: string
+  skills?: string[]
 }
 
 export interface Social {
@@ -341,6 +343,9 @@ export const certificates: CertificateItem[] = [
     year: '2026',
     image: arbitrumCert,
     fill: 'framed',
+    description:
+      'Verified foundational mastery in Ethereum Layer-2 rollup mechanics, Arbitrum Nitro architecture, Stylus WASM smart contracts, and gas-optimized EVM execution.',
+    skills: ['Arbitrum Nitro', 'Layer-2 Rollups', 'Stylus WASM', 'EVM Gas Optimization'],
   },
   {
     title: 'Rust School — Systems & Web3',
@@ -348,6 +353,9 @@ export const certificates: CertificateItem[] = [
     year: '2026',
     image: rustSchoolCert,
     fill: 'framed',
+    description:
+      'Intensive training in systems-level programming, memory safety & borrow checker semantics, concurrent multi-threaded execution, and Web3 protocol architecture.',
+    skills: ['Rust', 'Systems Programming', 'Concurrency', 'Web3 Protocols'],
   },
   {
     title: 'Resource Speaker — FigmaFusion',
@@ -355,6 +363,9 @@ export const certificates: CertificateItem[] = [
     year: '2026',
     image: figmaFusionCert,
     fill: 'framed',
+    description:
+      'Invited technical resource speaker at Cor Jesu College, delivering hands-on workshops on atomic design systems, responsive auto-layout, and seamless designer-to-developer handoff.',
+    skills: ['Design Systems', 'Figma Prototyping', 'Component Architecture', 'Tech Mentorship'],
   },
   {
     title: 'OpenxAI Mini App Competition',
@@ -362,6 +373,9 @@ export const certificates: CertificateItem[] = [
     year: '2025',
     image: openxaiCert,
     fill: 'framed',
+    description:
+      'Recognized in regional hackathon competition for prototyping AI-driven Telegram mini apps integrating decentralized financial data feeds and automated agent workflows.',
+    skills: ['AI Mini Apps', 'DeFi Integrations', 'Telegram SDK', 'Full-Stack Web'],
   },
   {
     title: 'Base Community Townhall IRL',
@@ -369,6 +383,9 @@ export const certificates: CertificateItem[] = [
     year: '2025',
     image: baseCert,
     fill: 'framed',
+    description:
+      'Credentialed attendee and builder in Base ecosystem community sprints, exploring OnchainKit developer toolchains, Smart Wallets, and scalable consumer crypto applications.',
+    skills: ['Base Ecosystem', 'OnchainKit', 'Smart Wallets', 'EVM Scaling'],
   },
   {
     title: 'Stellar PH Builder Hackathon',
@@ -376,6 +393,9 @@ export const certificates: CertificateItem[] = [
     year: '2025',
     image: stellarHackathonCert,
     fill: 'framed',
+    description:
+      'Awarded hackathon credential for designing Soroban smart contracts, decentralized payment channels, and automated cross-border financial settlement rails.',
+    skills: ['Stellar Network', 'Soroban Contracts', 'Rust / WASM', 'Fintech Rails'],
   },
 ]
 

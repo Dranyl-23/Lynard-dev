@@ -42,10 +42,10 @@ export function Projects() {
               key={project.title}
               className={`project ${isExpanded ? 'project--expanded' : ''}`}
               onMouseEnter={() => setActive(i)}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.15 }}
-              transition={{ duration: 0.85, delay: 0.04, ease: easeOut }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.65, delay: 0.04, ease: easeOut }}
             >
               <div className="project__row">
                 <span className="mono muted project__index">

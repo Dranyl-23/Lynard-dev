@@ -9,7 +9,7 @@ import { SectionHeader } from '../SectionHeader'
 
 function CountUp({ to, suffix = '' }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: false, amount: 0.4 })
+  const inView = useInView(ref, { once: true, amount: 0.3 })
   const [value, setValue] = useState(0)
 
   useEffect(() => {
@@ -44,10 +44,10 @@ export function About() {
           {profile.bio.map((paragraph, i) => (
             <motion.p
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.25 }}
-              transition={{ duration: 0.85, delay: i * 0.1, ease }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.7, delay: i * 0.08, ease }}
             >
               {paragraph}
             </motion.p>
