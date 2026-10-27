@@ -1302,6 +1302,302 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   .exp__row { grid-template-columns: 1fr; gap: 0.75rem; }
 }
 
+/* ---------- Commit Truck / GitHub Cargo Activity ---------- */
+.commit-truck-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Manifest Header Card */
+.truck-manifest {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+  flex-wrap: wrap;
+}
+
+.truck-manifest__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-width: 34rem;
+}
+
+.truck-manifest__total {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+}
+
+.truck-manifest__num {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+
+.truck-manifest__label {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.truck-manifest__desc {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.truck-manifest__stats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.truck-manifest__pill {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 0.75rem;
+}
+
+.truck-manifest__pill-val {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.truck-manifest__pill-lbl {
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+}
+
+.truck-manifest__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: 999px;
+  background: var(--fg);
+  color: var(--bg);
+  border: 1px solid var(--fg);
+  font-size: 0.72rem;
+  font-weight: 500;
+  transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+
+.truck-manifest__btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+/* Truck Track / Staging Ground */
+.truck-track {
+  width: 100%;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+}
+
+.truck-stage {
+  min-width: 960px;
+  width: 100%;
+  position: relative;
+}
+
+.truck-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Highway Road Animation */
+@keyframes roadMotion {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.truck-road__stripes {
+  animation: roadMotion 0.9s linear infinite;
+}
+
+/* Headlight Beam Pulsing */
+@keyframes beamGlow {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 0.6; }
+}
+
+.truck-headlight-cone {
+  animation: beamGlow 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.truck-headlight-bulb {
+  filter: drop-shadow(0 0 6px var(--fg));
+}
+
+/* Commit Cells - Monochrome Silver/White in Dark Mode */
+.truck-cell {
+  transition: transform 0.15s var(--ease), fill 0.2s var(--ease), stroke 0.2s var(--ease);
+  cursor: pointer;
+}
+
+.truck-cell:hover,
+.truck-cell.is-active {
+  stroke: var(--fg);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 4px var(--fg));
+}
+
+.truck-cell--lvl-0 {
+  fill: rgba(245, 245, 243, 0.05);
+}
+
+.truck-cell--lvl-1 {
+  fill: rgba(245, 245, 243, 0.28);
+}
+
+.truck-cell--lvl-2 {
+  fill: rgba(245, 245, 243, 0.52);
+}
+
+.truck-cell--lvl-3 {
+  fill: rgba(245, 245, 243, 0.78);
+}
+
+.truck-cell--lvl-4 {
+  fill: #ffffff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
+}
+
+/* Commit Cells - Monochrome Charcoal/Black in Light Mode */
+[data-theme='light'] .truck-cell--lvl-0 {
+  fill: rgba(13, 13, 13, 0.06);
+}
+
+[data-theme='light'] .truck-cell--lvl-1 {
+  fill: rgba(13, 13, 13, 0.22);
+}
+
+[data-theme='light'] .truck-cell--lvl-2 {
+  fill: rgba(13, 13, 13, 0.48);
+}
+
+[data-theme='light'] .truck-cell--lvl-3 {
+  fill: rgba(13, 13, 13, 0.74);
+}
+
+[data-theme='light'] .truck-cell--lvl-4 {
+  fill: #0d0d0d;
+  filter: none;
+}
+
+/* Floating Cargo Manifest Tooltip */
+.truck-tooltip {
+  position: fixed;
+  transform: translate(-50%, -100%);
+  z-index: 100;
+  pointer-events: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.45rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  white-space: nowrap;
+  animation: tooltipIn 0.15s var(--ease);
+}
+
+@keyframes tooltipIn {
+  from { opacity: 0; transform: translate(-50%, -90%); }
+  to { opacity: 1; transform: translate(-50%, -100%); }
+}
+
+.truck-tooltip__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+}
+
+.truck-tooltip__badge {
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  background: var(--surface-hover);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  letter-spacing: 0.04em;
+}
+
+.truck-tooltip__date {
+  color: var(--muted);
+}
+
+.truck-tooltip__count {
+  font-size: 0.78rem;
+  color: var(--fg);
+}
+
+.truck-tooltip__count strong {
+  font-weight: 600;
+}
+
+/* Truck Footer / Legend */
+.truck-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  font-size: 0.72rem;
+}
+
+.truck-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.truck-legend__box {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  display: inline-block;
+  border: 1px solid var(--line);
+}
+
+.truck-footer__note {
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .truck-manifest {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+}
+
 /* ---------- Contact ---------- */
 .contact {
   position: relative;

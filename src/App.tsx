@@ -10,6 +10,7 @@ import { ScrollProgress } from './components/ScrollProgress'
 import { ThemeCurtain } from './components/ThemeCurtain'
 import { About } from './components/sections/About'
 import { Certificates } from './components/sections/Certificates'
+import { CommitTruck } from './components/sections/CommitTruck'
 import { Contact } from './components/sections/Contact'
 import { Experience } from './components/sections/Experience'
 import { Hero } from './components/sections/Hero'
@@ -45,6 +46,7 @@ export default function App() {
         <Skills />
         <Certificates />
         <Experience />
+        <CommitTruck />
         <Contact />
       </main>
       <RevealFooter />

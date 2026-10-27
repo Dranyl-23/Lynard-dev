@@ -23,7 +23,7 @@ export function Contact() {
   return (
     <section className="section contact" id="contact">
       <WorldMapBackground />
-      <SectionHeader index="06" title="Contact" />
+      <SectionHeader index="07" title="Contact" />
 
       <div className="contact__grid">
         <div className="contact__left">
