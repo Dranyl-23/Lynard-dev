@@ -166,7 +166,7 @@ body::after {
 
 .section {
   position: relative;
-  padding: clamp(6rem, 14vw, 12rem) var(--pad);
+  padding: clamp(3rem, 6vw, 5rem) var(--pad);
 }
 
 .serif-i { font-family: var(--serif); font-style: italic; }
@@ -187,7 +187,7 @@ body::after {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  margin-bottom: clamp(3rem, 7vw, 6rem);
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
 }
 .section-header__line {
   flex: 1;
@@ -765,7 +765,7 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   letter-spacing: -0.015em;
   max-width: 22ch;
   margin-left: auto;
-  margin-bottom: clamp(4rem, 9vw, 8rem);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 .about__grid {
   display: grid;
@@ -783,9 +783,9 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 /* Lanyard */
 .lanyard {
   position: relative;
-  height: 41rem;
+  height: 38rem;
   /* hang it higher, into the empty space left of the statement */
-  margin-top: -28rem;
+  margin-top: -24rem;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -911,9 +911,9 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 3.5rem;
+  margin-top: 2rem;
   border-top: 1px solid var(--line);
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
 .stat__value {
   font-family: var(--serif);
@@ -1227,7 +1227,7 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 }
 
 /* ---------- Skills ---------- */
-.skills__marquee { margin-bottom: clamp(4rem, 8vw, 7rem); }
+.skills__marquee { margin-bottom: clamp(2rem, 4.5vw, 3.5rem); }
 .skills__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1268,7 +1268,8 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 
 /* ---------- Experience ---------- */
 #experience.section {
-  padding-top: clamp(1.5rem, 3.5vw, 3rem);
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 .exp__row {
   position: relative;
@@ -1304,7 +1305,8 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 /* ---------- Contact ---------- */
 .contact {
   position: relative;
-  padding-bottom: clamp(5rem, 10vw, 8rem);
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding-bottom: clamp(3rem, 5vw, 4.5rem);
   isolation: isolate;
   overflow: hidden;
 }
@@ -1530,7 +1532,7 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   position: relative;
   width: 100%;
   margin: 0;
-  padding: clamp(4rem, 7vw, 6.5rem) var(--pad) clamp(2.5rem, 4vw, 3.5rem);
+  padding: clamp(3rem, 5vw, 4.5rem) var(--pad) clamp(2rem, 3.5vw, 3rem);
   border-top: 1px solid var(--line);
   overflow: hidden;
   background: var(--bg);
@@ -2406,7 +2408,7 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 .resume-cta {
   display: inline-flex;
