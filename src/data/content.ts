@@ -6,6 +6,7 @@
 import profilePhoto from '../assets/Profile.webp'
 import resumePdf from '../assets/Alfie-Lynard-Resume.pdf'
 import arbitrumCert from '../assets/certificate/Arbitrum-Learner.webp'
+import arbitrumBuild from '../assets/certificate/Arbitrum-Builder.png'
 import baseCert from '../assets/certificate/Base-Certificate.webp'
 import figmaFusionCert from '../assets/certificate/FigmaFusion-Cor-Jesu.webp'
 import openxaiCert from '../assets/certificate/OpenxAI-Davao-DeFi.webp'
@@ -436,6 +437,16 @@ export const certificates: CertificateItem[] = [
     description:
       'Awarded hackathon credential for designing Soroban smart contracts, decentralized payment channels, and automated cross-border financial settlement rails.',
     skills: ['Stellar Network', 'Soroban Contracts', 'Rust / WASM', 'Fintech Rails'],
+  },
+  {
+    title: 'Arbitrum Builder',
+    issuer: 'HackQuest × Arbitrum',
+    year: '2024',
+    image: arbitrumBuild,
+    fill: 'framed',
+    description:
+      'Certified developer credential awarded by HackQuest and Arbitrum for building and deploying decentralized applications on Arbitrum Nitro, implementing Stylus multi-language smart contracts (Rust & Solidity), and optimizing Layer-2 EVM scalability.',
+    skills: ['Arbitrum Nitro', 'Arbitrum Stylus', 'Rust & Solidity', 'Layer-2 Rollups', 'Smart Contracts'],
   },
 ]
 
