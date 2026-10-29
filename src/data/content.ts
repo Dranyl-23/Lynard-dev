@@ -14,6 +14,7 @@ import stellarHackathonCert from '../assets/certificate/StellarX-Hackathon.webp'
 import nexusImg from '../assets/projects/4PS-Nexus.jpg'
 import chainbudgetImg from '../assets/projects/Chainbudget.webp'
 import navySharksImg from '../assets/projects/NavySharks.webp'
+import lemsImg from '../assets/projects/Dual-Screen College Library Workspace.png'
 import remindaImg from '../assets/projects/Reminda.webp'
 import reportDavaoImg from '../assets/projects/Report-Davao.webp'
 import resumePage1 from '../assets/resume/46df439d-041d-4ec6-a0d3-6ca263610121_alfie-lynard-resume-1.jpg'
@@ -281,6 +282,45 @@ export const projects: Project[] = [
     stack: ['Next.js', 'Rust', 'Stellar Soroban', 'WebAuthn', 'Express'],
     live: 'https://4-ps-nexus.vercel.app/',
     image: nexusImg,
+  },
+  {
+    title: 'Library Entrance & Attendance Monitoring System',
+    year: '2026',
+    category: 'Enterprise Library System',
+    description:
+      'Designed exclusively for Cor Jesu College — LIRC to streamline student patron check-ins, real-time foot traffic analytics, mobile scanning synchronization, and consolidated academic attendance reports.',
+    tagline: 'Automating Library Foot Traffic & Academic Compliance',
+    overview:
+      'LIRC-LMS is an automated, real-time digital entrance monitoring and library management solution built specifically for Cor Jesu College (CJC). It upgrades the legacy system with a seamless kiosk that registers student and staff attendance upon entering or leaving, while equipping administrators with real-time occupancy monitoring, seating statistics, and comprehensive attendance analytics.',
+    metrics: [
+      { label: 'Campus Client', value: 'Cor Jesu College' },
+      { label: 'Architecture', value: 'Electron & Mobile LAN' },
+      { label: 'Live Telemetry', value: '2.5s Auto-Update' },
+    ],
+    highlights: [
+      {
+        title: 'Instant Barcode & ID Verification',
+        detail:
+          'Present student ID cards to the kiosk scanner for instant sound and photo check-in verification with 5-minute duplicate scan protection.',
+      },
+      {
+        title: 'Mobile Scanner App & Subnet Sync',
+        detail:
+          'Library staff can scan student IDs anywhere inside the facility via the official mobile app synced over local Wi-Fi with token-authenticated LAN security.',
+      },
+      {
+        title: 'Real-Time Heatmaps & Seating Statistics',
+        detail:
+          'Live graphics and doughnut charts auto-update every 2.5 seconds to track active occupants, prevent overcrowding, and visualize peak visitation hours.',
+      },
+      {
+        title: 'Unified Academic Report Generator',
+        detail:
+          'Extract official compliance reports filtered by School Year, Month, Program, and Format across Excel (.xlsx), Word (.doc), and PDF (.pdf).',
+      },
+    ],
+    stack: ['Laravel 11', 'Electron JS', 'React Native', 'PHP', 'MySQL', 'SQLite'],
+    image: lemsImg,
   },
 ]
 
