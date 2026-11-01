@@ -7,6 +7,7 @@ import {
   type MotionValue,
 } from 'framer-motion'
 import { certificates, type CertificateItem } from '../../data/content'
+import { startScroll, stopScroll } from '../../lib/scroll'
 import { useTheme } from '../../lib/theme'
 import { SectionHeader } from '../SectionHeader'
 import {
@@ -292,21 +293,22 @@ export function Certificates() {
     )
   }, [])
 
-  // Lock body scroll and handle keyboard navigation when lightbox modal is open
+  // Lock body + Lenis scroll and handle keyboard navigation when lightbox modal is open
   useEffect(() => {
-    if (activeModalIndex !== null) {
-      const original = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
-      const onKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') setActiveModalIndex(null)
-        if (e.key === 'ArrowLeft') handlePrev()
-        if (e.key === 'ArrowRight') handleNext()
-      }
-      window.addEventListener('keydown', onKeyDown)
-      return () => {
-        document.body.style.overflow = original
-        window.removeEventListener('keydown', onKeyDown)
-      }
+    if (activeModalIndex === null) {
+      startScroll()
+      return
+    }
+    stopScroll()
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveModalIndex(null)
+      if (e.key === 'ArrowLeft') handlePrev()
+      if (e.key === 'ArrowRight') handleNext()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      startScroll()
     }
   }, [activeModalIndex, handlePrev, handleNext])
 
@@ -352,6 +354,7 @@ export function Certificates() {
         {activeModalCert && activeModalIndex !== null && (
           <motion.div
             className="cert-lightbox-overlay"
+            data-lenis-prevent
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -360,6 +363,7 @@ export function Certificates() {
           >
             <motion.div
               className="cert-lightbox-modal"
+              data-lenis-prevent
               initial={{ scale: 0.94, opacity: 0, y: 16 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.94, opacity: 0, y: 16 }}

@@ -6,7 +6,7 @@
 import profilePhoto from '../assets/Profile.webp'
 import resumePdf from '../assets/Alfie-Lynard-Resume.pdf'
 import arbitrumCert from '../assets/certificate/Arbitrum-Learner.webp'
-import arbitrumBuild from '../assets/certificate/Arbitrum-Builder.png'
+import arbitrumBuild from '../assets/certificate/Arbitrum-Builder.webp'
 import baseCert from '../assets/certificate/Base-Certificate.webp'
 import figmaFusionCert from '../assets/certificate/FigmaFusion-Cor-Jesu.webp'
 import openxaiCert from '../assets/certificate/OpenxAI-Davao-DeFi.webp'
@@ -15,11 +15,11 @@ import stellarHackathonCert from '../assets/certificate/StellarX-Hackathon.webp'
 import nexusImg from '../assets/projects/4PS-Nexus.jpg'
 import chainbudgetImg from '../assets/projects/Chainbudget.webp'
 import navySharksImg from '../assets/projects/NavySharks.webp'
-import lemsImg from '../assets/projects/Dual-Screen College Library Workspace.png'
+import lemsImg from '../assets/projects/Dual-Screen College Library Workspace.webp'
 import remindaImg from '../assets/projects/Reminda.webp'
 import reportDavaoImg from '../assets/projects/Report-Davao.webp'
-import resumePage1 from '../assets/resume/46df439d-041d-4ec6-a0d3-6ca263610121_alfie-lynard-resume-1.jpg'
-import resumePage2 from '../assets/resume/46df439d-041d-4ec6-a0d3-6ca263610121_alfie-lynard-resume-2.jpg'
+import resumePage1 from '../assets/resume/46df439d-041d-4ec6-a0d3-6ca263610121_alfie-lynard-resume-1.webp'
+import resumePage2 from '../assets/resume/46df439d-041d-4ec6-a0d3-6ca263610121_alfie-lynard-resume-2.webp'
 
 export interface CertificateItem {
   title: string
@@ -331,8 +331,6 @@ export const skillGroups: SkillGroup[] = [
   { title: 'Backend & DB', items: ['Node.js', 'Express.js', 'Laravel', 'PostgreSQL', 'MySQL', 'MongoDB'] },
   { title: 'DevOps & Cloud', items: ['Docker', 'GitHub Actions', 'Firebase', 'WebSockets', 'Git', 'Vercel'] },
 ]
-
-export const marqueeSkills = ['React', 'TypeScript', 'Motion', 'Postgre', 'Design', 'Vite', 'MySql', 'Node.js', 'Rust', 'MongoDB', 'Solidity']
 
 export const experience: ExperienceItem[] = [
   {

@@ -502,7 +502,7 @@ export function CommitTruck() {
                 {/* Bottom Manifest Stencil Summary */}
                 <div className={`${styles.summary} mono`}>
                   <div className={styles.summaryLeft}>
-                    <strong>Total {stats.total.toLocaleString()} contributions in 2026</strong> (@{GITHUB_USERNAME})
+                    <strong>Total {stats.total.toLocaleString()} contributions in the last year</strong> (@{GITHUB_USERNAME})
                   </div>
                   <a
                     href={GITHUB_PROFILE_URL}
