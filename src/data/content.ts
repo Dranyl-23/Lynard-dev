@@ -146,7 +146,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Chainbudget',
-    year: '2025',
+    year: '2026',
     category: 'Web3 Finance',
     description:
       'Transparent organizational fund management powered by the Polygon network, featuring multi-signature approvals, real-time tracking, and role-based access.',
@@ -181,7 +181,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Navy Sharks',
-    year: '2025',
+    year: '2026',
     category: 'Luxury & Lifestyle',
     description:
       'Exclusive concierge club platform showcasing curated lifestyle destinations, yacht charters, and member experiences across Southeast Asia.',
@@ -251,7 +251,7 @@ export const projects: Project[] = [
   },
   {
     title: '4ps-Nexus',
-    year: '2024',
+    year: '2025',
     category: 'Welfare System',
     description:
       'Secure beneficiary portal for monitoring financial assistance disbursements, submitting applications, and receiving real-time program updates.',
@@ -409,7 +409,7 @@ export const certificates: CertificateItem[] = [
   {
     title: 'OpenxAI Mini App Competition',
     issuer: 'Davao DeFi × Certifika',
-    year: '2025',
+    year: '2026',
     image: openxaiCert,
     fill: 'framed',
     description:
@@ -419,7 +419,7 @@ export const certificates: CertificateItem[] = [
   {
     title: 'Base Community Townhall IRL',
     issuer: 'Base Philippines',
-    year: '2025',
+    year: '2026',
     image: baseCert,
     fill: 'framed',
     description:
@@ -429,7 +429,7 @@ export const certificates: CertificateItem[] = [
   {
     title: 'Stellar PH Builder Hackathon',
     issuer: 'Stellar Philippines',
-    year: '2025',
+    year: '2026',
     image: stellarHackathonCert,
     fill: 'framed',
     description:
@@ -439,7 +439,7 @@ export const certificates: CertificateItem[] = [
   {
     title: 'Arbitrum Builder',
     issuer: 'HackQuest × Arbitrum',
-    year: '2024',
+    year: '2026',
     image: arbitrumBuild,
     fill: 'framed',
     description:
